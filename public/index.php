@@ -4,7 +4,9 @@ define('ROOT', dirname(__DIR__));
 
 require ROOT . '/Core/App.php';
 use Core\App;
+use App\Routing\Routing;
 
 App::load();
 
-require ROOT . "/App/Router/Router.php";
+$router = new Routing();
+$router->route();
