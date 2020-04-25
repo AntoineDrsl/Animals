@@ -8,5 +8,5 @@ use App\Routing\Routing;
 
 App::load();
 
-$router = new Routing();
-$router->route();
+$routing = new Routing();
+$routing->route();
