@@ -7,6 +7,11 @@ use App\Controller\MainController;
 
 class Routing extends Router
 {
+    /**
+     * Controller
+     * 
+     * @var MainController
+     */
     public $mainController;
 
     /**

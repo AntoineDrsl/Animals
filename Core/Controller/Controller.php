@@ -7,6 +7,9 @@ class Controller
     /**
      * Appeler une vue
      * 
+     * @param string $view
+     * @param array $params
+     * 
      * @return void
      */
     public function render($view, $params = [])
@@ -21,6 +24,8 @@ class Controller
 
     /**
      * Appeler un fichier du dossier assets
+     * 
+     * @param string $link
      * 
      * @return string
      */
