@@ -13,6 +13,8 @@ class App
 
     private $db_instance;
 
+    private $createDb_instance;
+
     /**
      * Récupérer l'instance de la classe App, ou la créer
      * 
@@ -68,8 +70,8 @@ class App
     {
         $config = Config::getInstance(ROOT . "/App/Config/ConfigDb.php");
 
-        if(is_null($this->db_instance)) {
-            $this->createdb_instance = new CreateDatabase(
+        if(is_null($this->createDb_instance)) {
+            $this->createDb_instance = new CreateDatabase(
                 $config->get("dbName"),
                 $config->get("dbHost"), 
                 $config->get("dbPort"), 
@@ -77,6 +79,6 @@ class App
                 $config->get("dbPassword")
             );
         }
-        return $this->createdb_instance;
+        return $this->createDb_instance;
     }
 }
