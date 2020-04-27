@@ -52,7 +52,6 @@ class CreateDatabase extends Database
                 $statement = substr($statement, 0, -1);
                 $statement .= $this->makeForeignKey($foreigns);
                 $statement .= ')';
-                var_dump($statement);
                 $this->pdo->exec($statement);
             }
         } catch (\Exception $e) {

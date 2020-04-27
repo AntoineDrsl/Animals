@@ -69,5 +69,62 @@ class Database
         return $this->pdo;
     }
 
+    /**
+     * Lancer une recherche dans la database en SQL, pouvant être lié avec une entité
+     * 
+     * @param string $statement
+     * @param string $class
+     * @param boolean $one
+     * 
+     * @return object
+     */
+    public function query($statement, $class = null, $one = false) 
+    {
+        try {
+            $query = $this->pdo->query($statement);
+
+            if($query != false) {    
+                if(!is_null($class)){
+                    $query->setFetchMode(\PDO::FETCH_CLASS, $class);
+                } else {
+                    $query->setFetchMode(\PDO::FETCH_OBJ);
+                }
+
+                if($one){
+                    return $query->fetch();
+                } else {
+                    return $query->fetchAll();
+                }
+            }
+        } catch(\Exception $e) {
+            echo 'Une erreur est survenue lors de la requête';
+        }
+    }
+
+    /**
+     * Lancer une requête préparée en SQL
+     * 
+     * @param string $statement
+     * @param array $data
+     * 
+     * @return void
+     */
+    public function prepare ($statement, $data)
+    {
+        $prepare = $this->pdo->prepare($statement);
+        $prepare->execute($data);
+    }
+
+    /**
+     * Lancer une requête non préparée en SQL
+     * 
+     * @param string $statement
+     * 
+     * @return void
+     */
+    public function exec ($statement)
+    {
+        return $this->pdo->exec($statement);
+    }
 
 }

@@ -29,6 +29,7 @@ class Test
         ]);
         $this->createDb->createTable('animal', [
             'id' => 'INT PRIMARY KEY NOT NULL AUTO_INCREMENT',
+            'name' => 'VARCHAR(255) NOT NULL',
             'type' => 'VARCHAR(255) NOT NULL',
             'race' => 'VARCHAR(255) NOT NULL',
             'size' => 'INT NOT NULL',
