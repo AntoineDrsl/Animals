@@ -4,26 +4,37 @@ namespace Core\Config;
 
 class Config
 {
+    private static $_instance = null;
+
+    private $settings = [];
+
     /**
      * Constructeur
      */
-    public function __construct()
+    private function __construct($file)
     {
-        $this->config = [
-            'dbHost' => '127.0.0.1',
-            'dbPort' => '',
-            'dbName' => 'animals',
-            'dbUser' => 'root',
-            'dbPassword' => ''
-        ];
+        $this->settings = require $file;
     }
 
     /**
-     * Récupérer la config
+     * Récupérer l'instance de la classe Config, ou la créer
      * 
-     * @return array
+     * @return Config
      */
-    public function getConfig() {
-        return $this->config;
+    public static function getInstance($file)
+    {
+        if(is_null(self::$_instance)) {
+            self::$_instance = new Config($file);
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Récupérer un paramètre de la configuration (définie dans App/Config/ConfigDb.php)
+     * 
+     * @return string
+     */
+    public function get($key) {
+        return $this->settings[$key];
     }
 }

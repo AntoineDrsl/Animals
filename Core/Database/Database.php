@@ -51,21 +51,22 @@ class Database
     /**
      * Constructeur
      */
-    public function __construct()
+    public function __construct($dbName, $dbHost, $dbPort, $dbUser, $dbPassword)
     {
-        $config = new Config();
-        $config = $config->getConfig();
-        $this->dbHost = $config['dbHost'];
-        $this->dbPort = $config['dbPort'];
-        $this->dbName = $config['dbName'];
-        $this->dbUser = $config['dbUser'];
-        $this->dbPassword = $config['dbPassword'];
+        $this->dbName = $dbName;
+        $this->dbHost = $dbHost;
+        $this->dbPort = $dbPort;
+        $this->dbUser = $dbUser;
+        $this->dbPassword = $dbPassword;
 
-        try {   
-            $this->pdo = new \PDO('mysql:host=' . $this->dbHost . ';dbname=' . $this->dbName, $this->dbUser, $this->dbPassword);
-        } catch (\Exception $e) {
-            echo 'La connexion à la base de données a échoué :(';
+        if(is_null($this->pdo)) {
+            try {   
+                $this->pdo = new \PDO('mysql:host=' . $this->dbHost . ';dbname=' . $this->dbName, $this->dbUser, $this->dbPassword);
+            } catch (\Exception $e) {
+                echo 'La connexion à la base de données a échoué :(';
+            }
         }
+        return $this->pdo;
     }
 
 

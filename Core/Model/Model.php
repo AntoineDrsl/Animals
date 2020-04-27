@@ -2,9 +2,9 @@
 
 namespace Core\Model;
 
-use Core\Database\Database;
+use Core\App;
 
-class Model extends Database
+class Model
 {
     /**
      * Classe ciblée
@@ -24,6 +24,7 @@ class Model extends Database
             $this->model = strtolower(str_replace('Model', '', $class));
         }
 
-        parent::__construct();
+        $app = new App();
+        $this->db = $app->getDb();
     }
 }

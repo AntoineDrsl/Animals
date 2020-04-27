@@ -2,6 +2,7 @@
 
 namespace App\Test;
 
+use Core\App;
 use Core\Database\CreateDatabase;
 
 class Test
@@ -11,9 +12,11 @@ class Test
      */
     public function __construct()
     {
-        $db = new createDatabase();
-        $db->createDatabase('animals');
-        $db->createTable('test', [
+        $app = new App();
+        $this->createdb = $app->getCreateDb();
+        
+        $this->createdb->createDatabase('animals');
+        $this->createdb->createTable('test', [
             'id' => 'INT PRIMARY KEY NOT NULL AUTO_INCREMENT',
             'name' => 'VARCHAR(50) NOT NULL'
         ]);
