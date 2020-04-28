@@ -59,4 +59,18 @@ class Model
         }
         return substr($orderList, 0, -2);
     }
+
+    /**
+     * Créer la partie LIMIT d'une requête SQL
+     * 
+     * @param array $criteria
+     * 
+     * @return string
+     */
+    public function createLimit($criteria)
+    {
+
+        return " LIMIT " . $criteria;
+    
+    }
 }
