@@ -97,8 +97,6 @@ class User
     public function getRole()
     {
         $role = $this->role;
-        // Tous les utilisateurs ont le rôle ROLE_USER, comme dans Symfony
-        $role = 'ROLE_USER';
 
         return $role;
     }

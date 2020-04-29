@@ -2,6 +2,7 @@
 
 namespace App\Routing;
 
+use App\Controller\AdminController;
 use Core\Router\Router;
 use App\Controller\MainController;
 use App\Controller\UserController;
@@ -11,28 +12,6 @@ use App\Controller\ProductController;
 class Routing extends Router
 {
     /**
-     * Controller
-     * 
-     * @var MainController
-     */
-    public $mainController;
-
-
-    /**
-     * AnimalController
-     * 
-     * @var AnimalController
-     */
-    public $animalController;
-    
-    /**
-     * ProductController
-     * 
-     * @var ProductController
-     */
-    public $productController;
-
-    /**
      * Constructeur
      */
     public function __construct()
@@ -41,6 +20,7 @@ class Routing extends Router
         $this->animalController = new AnimalController();
         $this->productController = new ProductController();
         $this->userController = new UserController();
+        $this->adminController = new AdminController();
     }
 
     /**
@@ -89,6 +69,10 @@ class Routing extends Router
 
         else if($this->onPage('logout')){
             $this->userController->logout();
+        }
+
+        else if($this->onPage('admin')){
+            $this->adminController->admin();
         }
 
     }

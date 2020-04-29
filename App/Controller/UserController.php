@@ -46,7 +46,7 @@ class UserController extends Controller
                             $_POST['role'] = 'ROLE_USER';
                         }
                         $this->interface->save($_POST, 'user');
-                        // return $this->redirectToRoute('home');
+                        return $this->redirectToRoute('home');
 
                     } else {
                         $errorMessage = "Les mots de passe sont différents";
@@ -89,6 +89,7 @@ class UserController extends Controller
                     if($isConnected) {
                         $user->setPassword('');
                         $_SESSION['user'] = $user;
+                        $_SESSION['role'] = $user->getRole();
                         return $this->redirectToRoute('home');
                     } else {
                         $errorMessage = "Mot de passe incorrect";
