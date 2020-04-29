@@ -71,4 +71,25 @@ class AnimalController extends Controller{
         return $this->redirectToRoute('animals');
 
     }
+
+    public function editAnimal(){
+
+        if(!empty($_POST)){
+
+            if(!empty($_GET['id'])){
+
+                $this->dbInterface->update('animal', $_POST, $_GET['id']);
+                return $this->redirectToRoute('singleAnimal', $_GET['id']);
+
+            }
+
+        }
+        $animal = $this->AnimalModel->find($_GET['id']);
+        return $this->render('animals/editAnimal', [
+            'animal' => $animal,
+            'onPage' => 'editAnimal'
+        ]);
+
+
+    }
 }

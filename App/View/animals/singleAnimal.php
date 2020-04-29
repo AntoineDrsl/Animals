@@ -12,6 +12,7 @@
                         <?= ' Taille de l\'animal: ' . $animal->getSize() . ' Poids: ' . $animal->getWeight() . ' Age: ' . $animal->getAge() ?>
                     </div>
                     <a href="<?= $this->goto('removeAnimal', $animal->getId()); ?>"><button class="btn btn-danger">Supprimer</button></a>
+                    <a href="<?= $this->goto('editAnimal', $animal->getId()); ?>"><button class="btn btn-warning">Modifier</button></a>
                 </div>
             </div>
         <?php } ?>
