@@ -19,4 +19,10 @@ class Query extends Model
                                 'App\Entity\\' . ucfirst($this->model),
                                 false);
     }
+
+    public function find($id){
+        return $this->db->query("SELECT * FROM " . $this->model . " WHERE id=" . $id,
+                                '\App\Entity\\' . ucfirst($this->model),
+                                true);
+    }
 }

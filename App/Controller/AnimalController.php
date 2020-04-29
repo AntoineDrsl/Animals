@@ -25,5 +25,13 @@ class AnimalController extends Controller{
             
     }
 
-            
+    public function singleAnimal(){
+        $animalModel = new AnimalModel();
+        $animal = $animalModel->find($_GET['id']);
+        var_dump($animal);
+
+        return $this->render('presentation/singleAnimal', [
+            'animal' => $animal
+        ]);
+    }
 }
