@@ -8,7 +8,9 @@ use Core\Model\DbInterface;
 
 class AnimalController extends Controller{
     
-    
+    /**
+     * Constructeur
+     */
     public function __construct()
     {
         $this->AnimalModel = new AnimalModel();

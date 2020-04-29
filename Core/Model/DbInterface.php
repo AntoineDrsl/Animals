@@ -6,6 +6,14 @@ use Core\Model\Model;
 
 class DbInterface extends Model
 {
+    /**
+     * Enregistrer en base de données
+     * 
+     * @param array $data
+     * @param string $class
+     * 
+     * @return void
+     */
     public function save($data, $class) {
 
         $statement = "INSERT INTO " . $class . "(";
@@ -28,6 +36,15 @@ class DbInterface extends Model
         $this->db->prepare($statement, $data);
     }
 
+    /**
+     * Modifier un élément en base de données
+     * 
+     * @param string $class
+     * @param array $data
+     * @param int $id
+     * 
+     * @return void
+     */
     public function update($class, $data, $id)
     {       
         $statement = "UPDATE " . $class . " SET ";
@@ -46,6 +63,14 @@ class DbInterface extends Model
         $this->db->exec($statement);
     }
 
+    /**
+     * Supprimer un élément en base de données
+     * 
+     * @param string $class
+     * @param int $id
+     * 
+     * @return void
+     */
     public function delete($class, $id)
     {
         $this->db->exec('DELETE FROM ' . $class . ' WHERE id=' . $id);
