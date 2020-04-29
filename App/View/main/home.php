@@ -29,7 +29,7 @@
                 <?php foreach ($animals as $animal) { ?>
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="https://fakeimg.pl/250x100/" alt="<?= $animal->getName() ?>">
+                            <img class="card-img-top" src="<?= ROOT . '/App/upload/imgAnimal/' . $animal->getImage() ?>" alt="<?= $animal->getName() ?>">
                             <h5 class="card-title"><?= $animal->getName() ?></h5>
                         </div>
                     </div>

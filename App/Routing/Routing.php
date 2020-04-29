@@ -65,6 +65,19 @@ class Routing extends Router
             $this->productController->singleProduct();
         }
 
+        else if($this->onPage('newProduct')){
+            $this->productController->newProduct();
+        }
+
+        else if($this->onPage('editProduct')){
+            $this->productController->editProduct();
+        }
+
+        else if($this->onPage('deleteProduct')){
+            $this->productController->deleteProduct();
+        }
+
+
         else if($this->onPage('signup')){
             $this->userController->signup();
         }

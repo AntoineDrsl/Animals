@@ -11,6 +11,8 @@
                         <?= ' Conseillé pour les : ' . $product->getTypeAnimal() . ' Stock: ' . $product->getStock()?><br>
                         <?= ' Prix: ' . $product->getPrice() ?>
                     </div>
+                    <a href="<?= $this->goto('deleteProduct', $product->getId()); ?>"><button class="btn btn-danger">Supprimer</button></a>
+                    <a href="<?= $this->goto('editProduct', $product->getId()); ?>"><button class="btn btn-warning">Modifier</button></a>
                 </div>
             </div>
         <?php } ?>

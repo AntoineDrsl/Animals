@@ -63,8 +63,6 @@ class AnimalController extends Controller{
             $extensions = array('.png', '.gif', '.jpg', '.jpeg');
             $extension = strrchr($_FILES['image']['name'], '.');
 
-            var_dump($_POST);
-
             if(!in_array($extension, $extensions)){
                 $error = 'Choisi une meilleure extension ta cru qquoi';
             }
@@ -76,7 +74,7 @@ class AnimalController extends Controller{
             if($error === ''){
                 if(move_uploaded_file($_FILES['image']['tmp_name'], $folder . $fileName )){
 
-                    $_POST['image'] = $folder . $fileName;
+                    $_POST['image'] = $fileName;
 
                     $this->dbInterface->save($_POST, 'animal');
                     return $this->redirectToRoute('animals');

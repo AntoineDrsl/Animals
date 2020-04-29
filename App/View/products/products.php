@@ -1,6 +1,7 @@
 <div class="container">
-    <h1>Voici la liste des animaux que nous possédons</h1>
-    <div class="row">   
+    <h1>Voici la liste des produits que nous possedons</h1>
+    <div class="row">
+    <a href="<?= $this->goto('newProduct') ?>"><button class="btn btn-primary">Ajouter un produit</button></a>
         <?php if($products) { ?> 
             <?php foreach($products as $product) { ?>
                 <div class="col-md-4">  
