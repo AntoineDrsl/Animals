@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Model\AnimalModel;
 use Core\Controller\Controller;
 
-class PresentationController extends Controller{
+class AnimalController extends Controller{
     
     
     /**

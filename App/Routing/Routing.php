@@ -18,14 +18,14 @@ class Routing extends Router
 
 
     /**
-     * Controller
+     * AnimalController
      * 
      * @var AnimalController
      */
     public $animalController;
     
     /**
-     * Controller
+     * ProductController
      * 
      * @var ProductController
      */
@@ -52,11 +52,11 @@ class Routing extends Router
             $this->mainController->home();
         }
         
-        else if($this->onPage('animals') || $this->pageNotDefined()){
+        else if($this->onPage('animals')){
             $this->animalController->presentationAnimals();
         }
 
-        else if($this->onPage('products') || $this->pageNotDefined()){
+        else if($this->onPage('products')){
             $this->productController->presentationProducts();
         }
     }

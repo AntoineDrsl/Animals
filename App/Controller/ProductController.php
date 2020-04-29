@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Model\ProductModel;
 use Core\Controller\Controller;
 
-class PresentationController extends Controller{
+class ProductController extends Controller{
     
     /**
     * Route: presentationProducts
