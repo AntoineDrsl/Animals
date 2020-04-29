@@ -73,6 +73,14 @@ class Routing extends Router
         else if($this->onPage('signup')){
             $this->userController->signup();
         }
+
+        else if($this->onPage('login')){
+            $this->userController->login();
+        }
+
+        else if($this->onPage('logout')){
+            $this->userController->logout();
+        }
     }
 
 }
