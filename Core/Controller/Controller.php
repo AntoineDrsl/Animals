@@ -69,23 +69,6 @@ class Controller
     }
 
     /**
-     * Redirige vers la route demandé
-     * 
-     * @param string $route
-     * @param int|string|false $id
-     * 
-     * @return HTTP
-     */
-    public function redirectToRoute($route, $id = null)
-    {
-        if (is_null($id)) {
-            return header("Location: index.php?page=" . $route);
-        } else {
-            return header("Location: index.php?page=" . $route . "&id=" . $id);
-        }
-    }
-
-    /**
      * Retourner la classe 'active' ou false en fonction de la page
      * 
      * @param string $page
