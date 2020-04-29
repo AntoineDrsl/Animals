@@ -113,6 +113,8 @@ class Database
     {
         $prepare = $this->pdo->prepare($statement);
         $prepare->execute($data);
+
+        return $prepare;
     }
 
     /**

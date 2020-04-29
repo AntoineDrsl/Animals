@@ -62,6 +62,10 @@ class Routing extends Router
             $this->animalController->singleAnimal();
         }
 
+        else if($this->onPage('newAnimal')){
+            $this->animalController->newAnimal();
+        }
+
         else if($this->onPage('products')){
             $this->productController->presentationProducts();
         }
