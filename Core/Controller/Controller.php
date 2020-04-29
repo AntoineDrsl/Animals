@@ -33,4 +33,13 @@ class Controller
     {
         return '/public/assets/' . $link;
     }
+
+    public function goto($route, $id = false)
+    {
+        $route = 'index.php?page=' . $route;
+        if($id) {
+            $route .= '&id=' . $id;
+        }
+        return $route;
+    }
 }

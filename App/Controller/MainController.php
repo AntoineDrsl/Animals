@@ -21,9 +21,6 @@ class MainController extends Controller
         $productModel = new ProductModel();
         $products = $productModel->findLast(['id' => 'ASC'], 5);
 
-        var_dump($products);
-
-
         return $this->render('main/home', [
             'animals' => $animals,
             'products' => $products
