@@ -2,10 +2,13 @@
 <div class="container">
     <div class="row">      
         <form action="index.php?page=newAnimal" method="POST">
-            <div class="form-group col-md-4">
+            <div class="form-group">
                 <label for="NameInput">Nom</label>
                 <input type="text" class="form-control" id="NameInput" name="name">
                 <small id="nameHelp" class="form-text text-muted">Nom de l'animal que vous voulez enregistrer</small>
+            </div>
+            <div class="form-group col-md-4">
+                <input type="file" name="image" id="image" class="form-control">
             </div>
             <div class="form-group col-md-4">
                 <label for="TypeSelect">Type de l'animal</label>
