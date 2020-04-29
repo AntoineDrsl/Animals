@@ -32,6 +32,9 @@
                         <a href="<?= $this->goto('login') ?>" class="btn btn-outline-light mr-4">Se connecter</a>
                         <a href="<?= $this->goto('signup') ?>" class="btn btn-outline-light mr-4">S'inscrire</a>
                     <?php } else { ?>
+                        <?php if($this->isAdmin()) { ?>
+                            <a href="<?= $this->goto('admin') ?>" class="btn btn-outline-light mr-4">Admin</a>
+                        <?php } ?>
                         <a href="<?= $this->goto('logout') ?>" class="btn btn-outline-light mr-4">Se déconnecter</a>
                     <?php } ?>
                 </span>
