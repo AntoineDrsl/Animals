@@ -25,7 +25,8 @@ class Test
             'postalCode' => 'VARCHAR(10) NOT NULL',
             'email' => 'VARCHAR(255) NOT NULL',
             'telephone' => 'VARCHAR(15) NOT NULL',
-            'roles' => 'JSON NOT NULL'
+            'password' => 'VARCHAR(255) NOT NULL',
+            'role' => 'VARCHAR(255) NOT NULL'
         ]);
         $this->createDb->createTable('animal', [
             'id' => 'INT PRIMARY KEY NOT NULL AUTO_INCREMENT',

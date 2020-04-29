@@ -25,4 +25,10 @@ class Query extends Model
                                 '\App\Entity\\' . ucfirst($this->model),
                                 true);
     }
+
+    public function findBy($field, $value) {
+        return $this->db->query("SELECT * FROM " . $this->model . " WHERE " . $field . "= '" . $value . "'",
+                                '\App\Entity\\' . ucfirst($this->model),
+                                true);
+    }
 }

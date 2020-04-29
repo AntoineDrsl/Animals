@@ -29,6 +29,7 @@
                 </ul>
                 <span class="navbar-text">
                     <a href="#" class="btn btn-outline-light mr-4">Se connecter</a>
+                    <a href="<?= $this->goto('signup') ?>" class="btn btn-outline-light mr-4">S'inscrire</a>
                 </span>
             </div>
         </nav>

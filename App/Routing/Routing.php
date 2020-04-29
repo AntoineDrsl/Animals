@@ -4,6 +4,7 @@ namespace App\Routing;
 
 use Core\Router\Router;
 use App\Controller\MainController;
+use App\Controller\UserController;
 use App\Controller\AnimalController;
 use App\Controller\ProductController;
 
@@ -39,6 +40,7 @@ class Routing extends Router
         $this->mainController = new MainController;
         $this->animalController = new AnimalController();
         $this->productController = new ProductController();
+        $this->userController = new UserController();
     }
 
     /**
@@ -60,8 +62,16 @@ class Routing extends Router
             $this->animalController->singleAnimal();
         }
 
+        else if($this->onPage('newAnimal')){
+            $this->animalController->newAnimal();
+        }
+
         else if($this->onPage('products')){
             $this->productController->presentationProducts();
+        }
+
+        else if($this->onPage('signup')){
+            $this->userController->signup();
         }
     }
 
