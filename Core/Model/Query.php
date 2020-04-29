@@ -13,7 +13,7 @@ class Query extends Model
                                 false);
     }
 
-    public function findLast($order = ['id' => 'ASC'], $limit)
+    public function findLast($limit, $order = ['id' => 'ASC'])
     {
         return $this->db->query("SELECT * FROM " . $this->model . $this->createOrder($order) . $this->createLimit($limit),
                                 'App\Entity\\' . ucfirst($this->model),

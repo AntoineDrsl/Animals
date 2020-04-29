@@ -20,6 +20,7 @@ class AnimalController extends Controller{
         $animals = $animalModel->findAll();
         
         return $this->render('presentation/animals', [
+            'onPage' => 'animals',
             'animals' => $animals
         ]);
             

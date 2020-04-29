@@ -16,15 +16,13 @@ class MainController extends Controller
     public function home()
     {
         $animalModel = new AnimalModel();
-        $animals = $animalModel->findLast(['id' => 'ASC'], 5);
+        $animals = $animalModel->findLast(5);
         
         $productModel = new ProductModel();
-        $products = $productModel->findLast(['id' => 'ASC'], 5);
-
-        var_dump($products);
-
+        $products = $productModel->findLast(5);
 
         return $this->render('main/home', [
+            'onPage' => 'home',
             'animals' => $animals,
             'products' => $products
         ]);
