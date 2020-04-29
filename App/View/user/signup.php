@@ -2,7 +2,7 @@
     
     <h1 class="text-center">Nous rejoindre !</h1>
 
-    <form action="index.php?page=signup" method="POST">
+    <form action="<?= $this->goto('signup') ?>" method="POST">
         <p class="text-danger"><?= $errorMessage ?></p>
         <div class="form-row">
             <div class="form-group col-md-6">

@@ -84,4 +84,24 @@ class Controller
             return false;
         }
     }
+
+    /**
+     * Vérifier que l'utilisateur est connecté, sinon rediriger
+     */
+    public function isConnected()
+    {
+        if(!isset($_SESSION['user'])) {
+            $this->redirectToRoute('home');
+        }
+    }
+
+    /**
+     * Vérifier que l'utilisateur n'est pas connecté, sinon rediriger
+     */
+    public function isNotConnected()
+    {
+        if(isset($_SESSION['user'])) {
+            $this->redirectToRoute('home');
+        }
+    }
 }

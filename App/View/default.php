@@ -28,8 +28,12 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a href="#" class="btn btn-outline-light mr-4">Se connecter</a>
-                    <a href="<?= $this->goto('signup') ?>" class="btn btn-outline-light mr-4">S'inscrire</a>
+                    <?php if(!isset($_SESSION['user'])) { ?>
+                        <a href="<?= $this->goto('login') ?>" class="btn btn-outline-light mr-4">Se connecter</a>
+                        <a href="<?= $this->goto('signup') ?>" class="btn btn-outline-light mr-4">S'inscrire</a>
+                    <?php } else { ?>
+                        <a href="<?= $this->goto('logout') ?>" class="btn btn-outline-light mr-4">Se déconnecter</a>
+                    <?php } ?>
                 </span>
             </div>
         </nav>

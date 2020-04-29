@@ -39,11 +39,12 @@ class Query extends Model
      * Rechercher un élément d'une table
      * 
      * @param int $id
+     * @param array $order
      * 
      * @return object|null
      */
-    public function find($id){
-        return $this->db->query("SELECT * FROM " . $this->model . " WHERE id=" . $id,
+    public function find($id, $order = ['id' => 'ASC']){
+        return $this->db->query("SELECT * FROM " . $this->model . " WHERE id=" . $id . $this->createOrder($order),
                                 '\App\Entity\\' . ucfirst($this->model),
                                 true);
     }
@@ -51,14 +52,29 @@ class Query extends Model
     /**
      * Rechercher tous les élements d'une table en fonction d'un champs
      * 
-     * @param string $field
-     * @param string $value
+     * @param array $criteria
+     * @param array $order
      * 
      * @return object|null
      */
-    public function findBy($field, $value) {
-        return $this->db->query("SELECT * FROM " . $this->model . " WHERE " . $field . "= '" . $value . "'",
-                                '\App\Entity\\' . ucfirst($this->model),
-                                true);
+    public function findBy($criteria = [], $order = ['id' => 'ASC'])
+    {
+        return $this->db->query('SELECT * FROM ' . $this->model . $this->createWhere($criteria) . $this->createOrder($order),
+        '\App\Entity\\' . ucfirst($this->model),
+        false);
+    }
+
+    /**
+     * Rechercher tous les élements d'une table en fonction d'un champs
+     * 
+     * @param array $criteria
+     * 
+     * @return object|null
+     */
+    public function findOneBy($criteria = [])
+    {
+        return $this->db->query('SELECT * FROM '. $this->model . $this->createWhere($criteria),
+                            '\App\Entity\\' . ucfirst($this->model),
+                            true);
     }
 }
