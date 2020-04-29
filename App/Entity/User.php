@@ -61,11 +61,18 @@ class User
     private $telephone;
 
     /**
-     * Rôles de l'utilisateur
+     * Mot de passe de l'utilisateur
      * 
-     * @var json
+     * @var string
      */
-    private $roles = [];
+    private $password;
+
+    /**
+     * Rôle de l'utilisateur
+     * 
+     * @var string
+     */
+    private $role;
 
     /**
      * Récupérer l'id de l'utilisateur
@@ -87,21 +94,21 @@ class User
         return $this;
     }
 
-    public function getRoles()
+    public function getRole()
     {
-        $roles = $this->roles;
+        $role = $this->role;
         // Tous les utilisateurs ont le rôle ROLE_USER, comme dans Symfony
-        $roles[] = 'ROLE_USER';
+        $role = 'ROLE_USER';
 
-        return array_unique($roles);
+        return $role;
     }
 
     /**
-     * Définir les rôles de l'utilisateur
+     * Définir le rôle de l'utilisateur
      */
-    public function setRoles($roles)
+    public function setRole($role)
     {
-        $this->roles = $roles;
+        $this->role = $role;
 
         return $this;
     }
@@ -111,7 +118,7 @@ class User
      */
     public function getFirstname()
     {
-        return $this->id;
+        return $this->firstname;
     }
 
     /**
@@ -151,7 +158,7 @@ class User
      */
     public function getAddress()
     {
-        return $this->id;
+        return $this->address;
     }
 
     /**
@@ -242,6 +249,26 @@ class User
     public function setTelephone($telephone)
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Récupérer le mot de passe de l'utilisateur
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Définir le mot de passe de l'utilisateur
+     * 
+     * @return self
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
 
         return $this;
     }

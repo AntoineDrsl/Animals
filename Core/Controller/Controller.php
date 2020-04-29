@@ -23,6 +23,23 @@ class Controller
     }
 
     /**
+     * Rediriger vers une route particulière
+     * 
+     * @param string $route
+     * @param string|int|null $id
+     * 
+     * @return self
+     */
+    public function redirectToRoute($route, $id = null)
+    {
+        if(is_null($id)) {  
+            return header('Location: index.php?page=' . $route);
+        } else {
+            return header('Location: index.php?page=' . $route . '&id=' . $id);
+        }
+    }
+
+    /**
      * Appeler un fichier du dossier assets
      * 
      * @param string $link
