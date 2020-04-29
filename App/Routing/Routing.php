@@ -54,6 +54,7 @@ class Routing extends Router
             $this->mainController->home();
         }
         
+        // ANIMAL SECTION
         else if($this->onPage('animals')){
             $this->animalController->presentationAnimals();
         }
@@ -66,6 +67,10 @@ class Routing extends Router
             $this->animalController->newAnimal();
         }
 
+        else if($this->onPage('removeAnimal')){
+            $this->animalController->deleteAnimal();
+        }
+
         else if($this->onPage('products')){
             $this->productController->presentationProducts();
         }
@@ -73,6 +78,7 @@ class Routing extends Router
         else if($this->onPage('signup')){
             $this->userController->signup();
         }
+
     }
 
 }
