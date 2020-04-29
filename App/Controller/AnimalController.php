@@ -84,12 +84,15 @@ class AnimalController extends Controller{
             }
 
         }
-        $animal = $this->AnimalModel->find($_GET['id']);
-        return $this->render('animals/editAnimal', [
-            'animal' => $animal,
-            'onPage' => 'editAnimal'
-        ]);
+        if(!empty($_GET['id'])){
+            $animal = $this->AnimalModel->find($_GET['id']);
+            return $this->render('animals/editAnimal', [
+                'animal' => $animal,
+                'onPage' => 'editAnimal'
+            ]);
+        }
 
+        return $this->redirectToRoute('animals');
 
     }
 }
