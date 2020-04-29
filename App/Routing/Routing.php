@@ -46,6 +46,10 @@ class Routing extends Router
         else if($this->onPage('animals') || $this->pageNotDefined()){
             $this->presentationController->presentationAnimals();
         }
+
+        else if($this->onPage('products') || $this->pageNotDefined()){
+            $this->presentationController->presentationProducts();
+        }
     }
 
 }
