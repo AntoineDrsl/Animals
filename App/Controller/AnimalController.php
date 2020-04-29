@@ -27,7 +27,7 @@ class AnimalController extends Controller{
         
         $animals = $this->AnimalModel ->findAll();
         
-        return $this->render('presentation/animals', [
+        return $this->render('animals/animals', [
             'onPage' => 'animals',
             'animals' => $animals
         ]);
@@ -36,12 +36,18 @@ class AnimalController extends Controller{
 
     public function singleAnimal(){
 
-        $animal = $this->AnimalModel->find($_GET['id']);
+        if(!empty($_GET["id"])){
+            $animal = $this->AnimalModel->find($_GET['id']);
+            
+            return $this->render('animals/singleAnimal', [
+                'onPage' => 'singleAnimal',
+                'animal' => $animal
+            ]);
+        }
 
-        return $this->render('presentation/singleAnimal', [
-            'onPage' => 'singleAnimal',
-            'animal' => $animal
-        ]);
+        return $this->redirectToRoute('animals');
+
+
     }
 
     public function newAnimal(){
@@ -50,8 +56,43 @@ class AnimalController extends Controller{
             return $this->redirectToRoute('animals');
         }
         
-        return $this->render('presentation/newAnimal',[
+        return $this->render('animals/newAnimal',[
             'onPage' => 'newAnimal'
         ]);
+    }
+
+    public function deleteAnimal(){
+        
+        if(!empty($_GET["id"])){
+            $this->dbInterface->delete('animal', $_GET['id']);
+            return $this->redirectToRoute('animals');
+        }
+
+        return $this->redirectToRoute('animals');
+
+    }
+
+    public function editAnimal(){
+
+        if(!empty($_POST)){
+
+            if(!empty($_GET['id'])){
+
+                $this->dbInterface->update('animal', $_POST, $_GET['id']);
+                return $this->redirectToRoute('singleAnimal', $_GET['id']);
+
+            }
+
+        }
+        if(!empty($_GET['id'])){
+            $animal = $this->AnimalModel->find($_GET['id']);
+            return $this->render('animals/editAnimal', [
+                'animal' => $animal,
+                'onPage' => 'editAnimal'
+            ]);
+        }
+
+        return $this->redirectToRoute('animals');
+
     }
 }
