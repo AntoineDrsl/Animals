@@ -9,12 +9,21 @@ use Core\Manager\PasswordEncoderManager;
 
 class UserController extends Controller
 {
+    /**
+     * Constructeur
+     */
     public function __construct()
     {
         $this->encoder = new PasswordEncoderManager();
         $this->interface = new DbInterface();
         $this->model = new UserModel();
     }
+
+    /**
+     * Route: signup
+     * 
+     * @return void
+     */
     public function signup()
     {
         $errorMessage = null;
