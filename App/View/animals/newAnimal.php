@@ -1,7 +1,7 @@
 
 <div class="container">
     <div class="row">      
-        <form action="index.php?page=newAnimal" method="POST">
+        <form action="index.php?page=newAnimal" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="NameInput">Nom</label>
                 <input type="text" class="form-control" id="NameInput" name="name">
@@ -39,6 +39,7 @@
                     <input type="number" class="form-control" id="AgeAnimal"  name="age">
                 </div>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <?= $error ?>
             </div>
         </form>
     </div>

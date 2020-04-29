@@ -51,13 +51,48 @@ class AnimalController extends Controller{
     }
 
     public function newAnimal(){
+
+        $error = '';
+
         if(!empty($_POST)){
-            $this->dbInterface->save($_POST, 'animal');
-            return $this->redirectToRoute('animals');
+
+            $folder = ROOT. '/App/upload/imgAnimal/';
+            $fileName = basename($_FILES['image']['name']);
+            $size = 100000;
+            $fileSize = filesize($_FILES['image']['tmp_name']);
+            $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+            $extension = strrchr($_FILES['image']['name'], '.');
+
+            var_dump($_POST);
+
+            if(!in_array($extension, $extensions)){
+                $error = 'Choisi une meilleure extension ta cru qquoi';
+            }
+
+            if($fileSize > $size){
+                $error = 'moins gros, gros';
+            }
+
+            if($error === ''){
+                if(move_uploaded_file($_FILES['image']['tmp_name'], $folder . $fileName )){
+
+                    $_POST['image'] = $folder . $fileName;
+
+                    $this->dbInterface->save($_POST, 'animal');
+                    return $this->redirectToRoute('animals');
+
+                }
+
+                else{
+                    $error = "Echec de l'upload fraté";
+                }
+            }
+            
         }
         
         return $this->render('animals/newAnimal',[
-            'onPage' => 'newAnimal'
+            'onPage' => 'newAnimal',
+            'error' => $error
         ]);
     }
 
