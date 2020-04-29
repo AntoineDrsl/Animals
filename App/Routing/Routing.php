@@ -91,4 +91,6 @@ class Routing extends Router
             $this->userController->logout();
         }
 
+    }
+
 }
