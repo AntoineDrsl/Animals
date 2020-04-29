@@ -32,6 +32,7 @@ class AnimalController extends Controller{
         var_dump($animal);
 
         return $this->render('presentation/singleAnimal', [
+            'onPage' => 'singleAnimal',
             'animal' => $animal
         ]);
     }
