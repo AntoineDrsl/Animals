@@ -18,6 +18,7 @@ class ProductController extends Controller{
         $products = $productModel->findAll();
         
         return $this->render('presentation/products', [
+            'onPage' => 'products',
             'products' => $products
         ]);
             

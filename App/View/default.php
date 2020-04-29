@@ -17,13 +17,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item <?= $this->onPage('home', $onPage) ?>">
                         <a class="nav-link" href="<?= $this->goto('home') ?>">Accueil <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?= $this->onPage('animals', $onPage) ?>">
                         <a class="nav-link" href="<?= $this->goto('animals') ?>">Animaux</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?= $this->onPage('products', $onPage) ?>">
                         <a class="nav-link" href="<?= $this->goto('products') ?>">Produits</a>
                     </li>
                 </ul>

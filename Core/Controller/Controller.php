@@ -34,6 +34,14 @@ class Controller
         return '/public/assets/' . $link;
     }
 
+    /**
+     * Générer une route dans les vues
+     * 
+     * @param string $route
+     * @param int|string|false $id
+     * 
+     * @return string
+     */
     public function goto($route, $id = false)
     {
         $route = 'index.php?page=' . $route;
@@ -41,5 +49,22 @@ class Controller
             $route .= '&id=' . $id;
         }
         return $route;
+    }
+
+    /**
+     * Retourner la classe 'active' ou false en fonction de la page
+     * 
+     * @param string $page
+     * @param string $onPage
+     * 
+     * @return string|false
+     */
+    public function onPage($page, $onPage)
+    {
+        if($onPage === $page) {
+            return 'active';
+        } else {
+            return false;
+        }
     }
 }
