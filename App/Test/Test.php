@@ -34,14 +34,16 @@ class Test
             'race' => 'VARCHAR(255) NOT NULL',
             'size' => 'INT NOT NULL',
             'weight' => 'INT NOT NULL',
-            'age' => 'INT NOT NULL'
+            'age' => 'INT NOT NULL',
+            'image' => 'TEXT NOT NULL'
         ]);
         $this->createDb->createTable('product', [
             'id' => 'INT PRIMARY KEY NOT NULL AUTO_INCREMENT',
             'name' => 'VARCHAR(255) NOT NULL',
             'type_animal' => 'VARCHAR(255) NOT NULL',
             'price' => 'DECIMAL(6,2) NOT NULL',
-            'stock' => 'INT NOT NULL'
+            'stock' => 'INT NOT NULL',
+            'image' => 'TEXT NOT NULL'
         ]);
         $this->createDb->createTable('donation', 
             [

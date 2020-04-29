@@ -40,6 +40,13 @@ class Product
     private $stock;
 
     /**
+     * Image du produit
+     * 
+     * @var int
+     */
+    private $image;
+
+    /**
      * Récupérer l'id du produit
      */
     public function getId()
@@ -135,6 +142,26 @@ class Product
     public function setStock($stock)
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Récupérer le stock du produit
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Définir le stock du produit
+     * 
+     * @return self
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -54,6 +54,13 @@ class Animal
     private $age;
 
     /**
+     * Photo de l'animal
+     * 
+     * @var string
+     */
+    private $image;
+
+    /**
      * Récupérer l'id de l'animal
      */
     public function getId()
@@ -189,6 +196,26 @@ class Animal
     public function setAge($age)
     {
         $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Récupérer l'image de l'animal
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Définir l'image de l'animal
+     * 
+     * @return self
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }
