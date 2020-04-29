@@ -14,6 +14,7 @@
                                 <?= $product->getPrice()?>
                             </p>
                         </div>
+                        <a href="<?= $this->goto('singleProduct', $product->getId()); ?>"><button class="btn btn-primary">Details</button></a>
                     </div>
                 </div>
             <?php } ?>
