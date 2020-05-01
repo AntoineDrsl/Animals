@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Model\UserModel;
 use Core\Model\DbInterface;
 use Core\Controller\Controller;
@@ -17,6 +18,7 @@ class UserController extends Controller
         $this->encoder = new PasswordEncoderManager();
         $this->interface = new DbInterface();
         $this->model = new UserModel();
+        $this->user = new User();
     }
 
     /**
@@ -81,15 +83,15 @@ class UserController extends Controller
         if(!empty($_POST)) {
             if(!empty($_POST['email']) && !empty($_POST['password'])) {
 
-                $user = $this->model->findOneBy(['email' => $_POST['email']]);
-                if($user) {
+                $this->user = $this->model->findOneBy(['email' => $_POST['email']]);
+                
+                if($this->user) {
+                    $isConnected = $this->encoder->passwordVerify($_POST['password'], $this->user->getPassword());
 
-                    $isConnected = $this->encoder->passwordVerify($_POST['password'], $user->getPassword());
-                    var_dump($isConnected);
                     if($isConnected) {
-                        $user->setPassword('');
-                        $_SESSION['user'] = $user;
-                        $_SESSION['role'] = $user->getRole();
+                        $this->user->setPassword('');
+                        $_SESSION['user'] = $this->user;
+                        $_SESSION['role'] = $this->user->getRole();
                         return $this->redirectToRoute('home');
                     } else {
                         $errorMessage = "Mot de passe incorrect";
