@@ -155,7 +155,10 @@ class Controller
     public function isAdmin()
     {  
         if(isset($_SESSION['user']) && $_SESSION['role'] != "ROLE_ADMIN") {
-            $this->redirectToRoute('home');
+            return false;
+        }
+        else{
+            return true;
         }
     }
 }
