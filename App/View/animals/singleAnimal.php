@@ -13,6 +13,7 @@
                     </div>
                     <a href="<?= $this->goto('removeAnimal', $animal->getId()); ?>"><button class="btn btn-danger">Supprimer</button></a>
                     <a href="<?= $this->goto('editAnimal', $animal->getId()); ?>"><button class="btn btn-warning">Modifier</button></a>
+                    <a href="<?= $this->goto('bookAnimal', $animal->getId()); ?>"><button class="btn btn-warning">Reserver cette animal !</button></a>
                 </div>
             </div>
         <?php } ?>

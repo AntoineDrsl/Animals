@@ -91,6 +91,7 @@ class UserController extends Controller
                     if($isConnected) {
                         $this->user->setPassword('');
                         $_SESSION['user'] = $this->user;
+                        $_SESSION['id'] = $this->user->getId();
                         $_SESSION['role'] = $this->user->getRole();
                         return $this->redirectToRoute('home');
                     } else {

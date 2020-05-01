@@ -55,6 +55,10 @@ class Routing extends Router
             $this->animalController->editAnimal();
         }
 
+        else if($this->onPage('bookAnimal')){
+            $this->animalController->bookAnimal();
+        }
+
 
         // PRODUCT SECTION
         else if($this->onPage('products')){

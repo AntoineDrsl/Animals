@@ -38,6 +38,13 @@ class ProductController extends Controller{
         
         if(!empty($_GET['id'])){
             $product = $this->ProductModel->find($_GET['id']);
+
+            if(!$product){
+
+                return $this->redirectToRoute('home');
+                
+            }
+
             return $this->render('products/singleProduct', [
                 'onPage' => 'singleProduct',
                 'product' => $product
@@ -93,6 +100,13 @@ class ProductController extends Controller{
 
         if(!empty($_GET['id'])){
             $product = $this->ProductModel->find($_GET['id']);
+
+            if(!$product){
+
+                return $this->redirectToRoute('home');
+                
+            }
+
             return $this->render('products/editProduct', [
                 "product" => $product,
                 "onPage" => "editProduct"
