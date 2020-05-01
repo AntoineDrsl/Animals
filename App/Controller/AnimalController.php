@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\AnimalModel;
+use App\Model\UserModel;
 use Core\Controller\Controller;
 use Core\Model\DbInterface;
 use DateTime;
@@ -138,7 +139,7 @@ class AnimalController extends Controller{
 
             if(!empty($_GET['id'])){
 
-                $_POST['user_id'] = $_SESSION['id'];
+                $_POST['user_id'] = $_SESSION["id"];
 
                 $date = new DateTime();
                 $_POST['datetime'] = $date->format('Y-m-d H:i:s');

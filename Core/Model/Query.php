@@ -60,8 +60,8 @@ class Query extends Model
     public function findBy($criteria = [], $order = ['id' => 'ASC'])
     {
         return $this->db->query('SELECT * FROM ' . $this->model . $this->createWhere($criteria) . $this->createOrder($order),
-        '\App\Entity\\' . ucfirst($this->model),
-        false);
+                                '\App\Entity\\' . ucfirst($this->model),
+                                false);
     }
 
     /**

@@ -5,7 +5,7 @@
         <div class="col-lg-6 col-md-12">
             <?php if($animals){?>
                 <h1>Liste des animaux</h1>
-                <table class="table">
+                <table class="table table-dark">
                     <thead class="thead-dark">
                         <tr>
                         <th scope="col">#</th>
@@ -38,7 +38,7 @@
         <div class="col-lg-6 col-md-12">
             <h1>Liste des produits</h1>
             <?php if($products){?>
-                <table class="table">
+                <table class="table table-dark">
                     <thead class="thead-dark">
                         <tr>
                         <th scope="col">#</th>
@@ -70,6 +70,47 @@
             <a href="<?= $this->goto('newProduct') ?>"><button class="btn btn-primary mb-5">Ajouter un produit</button></a>
         </div>
     </div>
+
+    <div class="row">
+
+        <div class="col-lg-6 col-md-12">
+            <h1>Liste des rendez-vous</h1>
+            <?php if($reservations){?>
+                <table class="table table-dark">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Pour</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($products as $product){?>
+                            <tr>
+                                <th scope="row"><?= $product->getId() ?></th>
+                                <td><?= $product->getName() ?></td>
+                                <td><?= $product->getTypeAnimal() ?></td>
+                                <td><?= $product->getPrice() ?></td>
+                                <td><?= $product->getStock() ?></td>
+                                <td>
+                                    <a href="<?= $this->goto('singleProduct', $product->getId()) ?>"><button class="btn btn-primary">Voir plus</button></a>
+                                    <a href="<?= $this->goto('editProduct', $product->getId()); ?>"><button class="btn btn-warning mx-3">Modifier</button></a>
+                                    <a href="<?= $this->goto('deleteProduct', $product->getId()); ?>"><button class="btn btn-danger mx-3">Supprimer</button></a>
+                                </td>
+                            </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+            <?php } ?>
+            <a href="<?= $this->goto('newProduct') ?>"><button class="btn btn-primary mb-5">Ajouter un produit</button></a>
+        </div>
+
+    </div>
+
+    
 </div>
 
 

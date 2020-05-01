@@ -8,6 +8,7 @@ use App\Controller\MainController;
 use App\Controller\UserController;
 use App\Controller\AnimalController;
 use App\Controller\ProductController;
+use App\Controller\ReservationController;
 
 class Routing extends Router
 {
@@ -21,6 +22,7 @@ class Routing extends Router
         $this->productController = new ProductController();
         $this->userController = new UserController();
         $this->adminController = new AdminController();
+        $this->reservationController = new ReservationController();
     }
 
     /**
@@ -56,7 +58,7 @@ class Routing extends Router
         }
 
         else if($this->onPage('bookAnimal')){
-            $this->animalController->bookAnimal();
+            $this->reservationController->bookAnimal();
         }
 
 
