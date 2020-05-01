@@ -40,6 +40,50 @@ class Controller
     }
 
     /**
+     * Uploader une image
+     * 
+     * @param array $fileInfos
+     * @param string $folder
+     * @param int $maxSize
+     * @param array $allowedExtensions
+     * 
+     * @return array(int, string)
+     */
+    public function uploadFile($fileInfos, $folder, $maxSize, $allowedExtensions)
+    {
+        $fileName = basename($fileInfos['image']['name']);
+        $fileSize = filesize($fileInfos['image']['tmp_name']);
+        $fileExtension = strrchr($fileInfos['image']['name'], '.');
+
+        if(in_array($fileExtension, $allowedExtensions)){
+
+            if($fileSize < $maxSize){
+
+                    if(move_uploaded_file($fileInfos['image']['tmp_name'], $folder . $fileName )){
+    
+                        return ['status' => 200, 'filename' => $fileName];
+    
+                    } else {
+                        $error = "Echec de l'upload";
+                        return ['status' => 500, 'error' => $error];
+                    }
+
+            } else {
+                $error = 'Votre fichier ne peut pas dépasser ' . $maxSize / 1000000 . 'Mo';
+                return ['status' => 500, 'error' => $error];
+            }
+            
+        } else {
+            $error = 'Les extensions autorisées sont: ';
+            foreach($allowedExtensions as $extension) {
+                $error .= $extension . ', ';
+            };
+            $error = substr($error, 0, -2);
+            return ['status' => 500, 'error' => $error];
+        }
+    }
+
+    /**
      * Appeler un fichier du dossier assets
      * 
      * @param string $link

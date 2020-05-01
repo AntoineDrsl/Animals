@@ -59,37 +59,16 @@ class AnimalController extends Controller{
             if(!empty($_POST['name']) && !empty($_POST['type']) && !empty($_POST['race']) && !empty($_POST['size']) && !empty($_POST['weight']) && !empty($_POST['age']) && !empty($_FILES['image'])) {
 
                 $folder = ROOT. '/public/assets/upload/imgAnimal/';
-                $fileName = basename($_FILES['image']['name']);
-                $size = 1000000;
-                $fileSize = filesize($_FILES['image']['tmp_name']);
-                $extensions = array('.png', '.gif', '.jpg', '.jpeg');
-                $extension = strrchr($_FILES['image']['name'], '.');
-                if(in_array($extension, $extensions)){
-
-                    if($fileSize < $size){
-
-                            if(move_uploaded_file($_FILES['image']['tmp_name'], $folder . $fileName )){
+                $result = $this->uploadFile($_FILES, $folder, 1000000, ['.png', '.gif', '.jpg', '.jpeg']);
             
-                                $_POST['image'] = $fileName;
-            
-                                $this->dbInterface->save($_POST, 'animal');
-                                return $this->redirectToRoute('animals');
-            
-                            } else {
-                                $error = "Echec de l'upload";
-                            }
+                    if($result['status'] === 200) {
+                        $_POST['image'] = $result['filename'];
 
+                        $this->dbInterface->save($_POST, 'animal');
+                        return $this->redirectToRoute('animals');
                     } else {
-                        $error = 'Votre fichier ne peut pas dépasser ' . $size / 1000000 . 'Mo';
+                        $error = $result['error'];
                     }
-                    
-                } else {
-                    $error = 'Les extensions autorisées sont: ';
-                    foreach($extensions as $value) {
-                        $error .= $value . ', ';
-                    };
-                    $error = substr($error, 0, -2);
-                }
 
             } else {
                 $error = 'Veuillez remplir tous les champs';

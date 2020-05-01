@@ -55,35 +55,24 @@ class ProductController extends Controller{
 
         if(!empty($_POST)){
 
-            $folder = ROOT. '/App/upload/imgProduct/';
-            $fileName = basename($_FILES['image']['name']);
-            $size = 100000;
-            $fileSize = filesize($_FILES['image']['tmp_name']);
-            $extensions = array('.png', '.gif', '.jpg', '.jpeg');
-            $extension = strrchr($_FILES['image']['name'], '.');
+            if(!empty($_POST['name']) && !empty($_POST['type_animal']) && !empty($_POST['stock']) && !empty($_POST['price']) && !empty($_FILES['image'])) {
 
-            if(!in_array($extension, $extensions)){
-                $error = 'Choisi une meilleure extension ta cru qquoi';
+                $folder = ROOT. '/public/assets/upload/imgProduct/';
+                $result = $this->uploadFile($_FILES, $folder, 1000000, ['.png', '.gif', '.jpg', '.jpeg']);
+            
+                    if($result['status'] === 200) {
+                        $_POST['image'] = $result['filename'];
+
+                        $this->dbInterface->save($_POST, 'product');
+                        return $this->redirectToRoute('products');
+                    } else {
+                        $error = $result['error'];
+                    }
+
+            } else {
+                $error = 'Veuillez remplir tous les champs';
             }
 
-            if($fileSize > $size){
-                $error = 'moins gros, gros';
-            }
-
-            if($error === ''){
-                if(move_uploaded_file($_FILES['image']['tmp_name'], $folder . $fileName )){
-
-                    $_POST['image'] = $fileName;
-
-                    $this->dbInterface->save($_POST, 'product');
-                    return $this->redirectToRoute('products');
-
-                }
-
-                else{
-                    $error = "Echec de l'upload fraté";
-                }
-            }
         }
     
         $this->render('products/newProduct', [
