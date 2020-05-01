@@ -24,9 +24,9 @@
             </div>
         </div>
         <div class="text-center mb-5">
-            <a href="<?= $this->goto('editAnimal', $animal->getId()); ?>"><button class="btn btn-warning mr-3">Modifier</button></a>
-            <a href="<?= $this->goto('removeAnimal', $animal->getId()); ?>"><button class="btn btn-danger ml-3">Supprimer</button></a>
-            <a href="<?= $this->goto('bookAnimal', $animal->getId()); ?>"><button class="btn btn-warning">Reserver cette animal !</button></a>
+            <a href="<?= $this->goto('editAnimal', $animal->getId()); ?>"><button class="btn btn-warning mx-3">Modifier</button></a>
+            <a href="<?= $this->goto('removeAnimal', $animal->getId()); ?>"><button class="btn btn-danger mx-3">Supprimer</button></a>
+            <a href="<?= $this->goto('bookAnimal', $animal->getId()); ?>"><button class="btn btn-warning mx-3">Reserver cette animal !</button></a>
         </div>
     <?php } ?>
 </div>
