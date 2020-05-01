@@ -24,18 +24,36 @@
 <div id="homeAnimals">
     <div class="container">
         <h2 class="my-5 text-center">Les derniers animaux à adopter</h2>
-        <div class="row">
-            <?php if ($animals) { ?>
-                <?php foreach ($animals as $animal) { ?>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img class="card-img-top" src="<?= ROOT . '/App/upload/imgAnimal/' . $animal->getImage() ?>" alt="<?= $animal->getName() ?>">
-                            <h5 class="card-title"><?= $animal->getName() ?></h5>
+        <?php if ($animals) { ?>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 75vh; overflow: hidden">
+                <ol class="carousel-indicators">
+                    <?php foreach ($animals as $key => $animal) { ?>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="<?php $key ?>" <?php if($key === 0) { ?> class="active" <?php } ?>></li>
+                    <?php } ?>
+                </ol>
+                <div class="carousel-inner">
+                    <?php foreach ($animals as $key => $animal) { ?>
+                        <div class="carousel-item <?php if($key === 0) { ?> active <?php } ?>">
+                        <a href="#">
+                            <img class="d-block w-100 h-100" src="<?= $this->asset('upload/imgAnimal/' . $animal->getImage()) ?>" alt="slide">
+                            </a>
+                            <div class="carousel-caption d-none d-md-block" style="position: absolute; top: 25px; height: 100px; background-color: rgba(25, 25, 25, 0.5)">
+                                <h5><?= $animal->getName() ?></h5>
+                                <p>Type: <?= $animal->getType() ?> - Race: <?= $animal->getRace() ?></p>
+                            </div>
                         </div>
-                    </div>
-                <?php } ?>
-            <?php } ?>
-        </div>
+                    <?php } ?>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        <?php } ?>
     </div>
 </div>
 <div id="homeProducts">

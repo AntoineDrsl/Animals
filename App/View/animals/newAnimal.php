@@ -11,11 +11,11 @@
                 <div class="form-group col-md-6">
                     <label for="TypeSelect">Type de l'animal</label>
                     <select class="form-control" id="TypeSelect" name="type">
-                        <option value="Chien">Chien</option>
-                        <option value="Chat">Chat</option>
-                        <option value="Cochon">Cochon</option>
-                        <option value="Poulet">Poulet</option>
-                        <option value="Ecureuil">Ecureuil</option>
+                        <option value="chien">Chien</option>
+                        <option value="chat">Chat</option>
+                        <option value="cochon">Cochon</option>
+                        <option value="poulet">Poulet</option>
+                        <option value="ecureuil">Ecureuil</option>
                     </select>
                 </div>
             <div class="form-group col-md-6">
