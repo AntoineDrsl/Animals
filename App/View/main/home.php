@@ -34,7 +34,7 @@
                 <div class="carousel-inner">
                     <?php foreach ($animals as $key => $animal) { ?>
                         <div class="carousel-item <?php if($key === 0) { ?> active <?php } ?>">
-                        <a href="#">
+                        <a href="<?= $this->goto('singleAnimal', $animal->getId()) ?>">
                             <img class="d-block w-100 h-100" src="<?= $this->asset('upload/imgAnimal/' . $animal->getImage()) ?>" alt="slide">
                             </a>
                             <div class="carousel-caption d-none d-md-block" style="position: absolute; top: 25px; height: 100px; background-color: rgba(25, 25, 25, 0.5)">
