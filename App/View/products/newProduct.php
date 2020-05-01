@@ -25,7 +25,7 @@
                     <input type="number" class="form-control" id="StockProduct" name="stock">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="PriceProduct">Prix de l'animal</label><br>
+                    <label for="PriceProduct">Prix du produit</label><br>
                     <input type="number" class="form-control" id="PriceProduct" name="price">
                 </div>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
