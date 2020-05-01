@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\AnimalModel;
+use App\Model\UserModel;
 use Core\Controller\Controller;
 use Core\Model\DbInterface;
 use DateTime;
@@ -16,6 +17,7 @@ class ReservationController extends Controller{
     {
         $this->AnimalModel = new AnimalModel();
         $this->dbInterface = new DbInterface();
+        $this->UserModel = new UserModel();
     }
 
     /**
@@ -32,7 +34,9 @@ class ReservationController extends Controller{
 
             if(!empty($_GET['id'])){
 
-                $_POST['user_id'] = $_SESSION["id"];
+                $user = $this->UserModel->findOneBy(["id" => $_SESSION["id"]]);
+
+                $_POST['user_id'] = $user->getId();
 
                 $date = new DateTime();
                 $_POST['datetime'] = $date->format('Y-m-d H:i:s');
