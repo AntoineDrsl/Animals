@@ -1,14 +1,14 @@
 <div class="container">
     <h1 class="text-center my-5">Entrer un nouveau produit</h1>
     <div class="row">
-        <form action="index.php?page=newProduct" method="POST" enctype="multipart/form-data" class="mx-auto">
+        <form action="<?= $this->goto('newProduct') ?>" method="POST" enctype="multipart/form-data" class="mx-auto">
             <div class="form-group">
                 <label for="NameInput">Nom du produit</label>
                 <input type="text" class="form-control" id="NameInput" name="name">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="file" name="image" id="image" class="form-control">
+                    <input type="file" name="image" id="image" class="form-control-file">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="TypeSelect">Conseillé pour :</label>

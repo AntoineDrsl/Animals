@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">      
-        <form action="index.php?page=editProduct&id=<?= $product->getId(); ?>" method="POST" enctype="multipart/form-data">
+        <form action="<?= $this->goto('editProduct', $product->getId()) ?>" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="NameInput">Nom du produit</label>
                 <input type="text" class="form-control" id="NameInput" name="name">

@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="text-center my-5">Modifier: <?= $animal->getName() ?></h1>
     <div class="row">      
-        <form action="<?= $this->goto('newAnimal', $animal->getId()) ?>" method="POST" enctype="multipart/form-data" class="mx-auto">
+        <form action="<?= $this->goto('editAnimal', $animal->getId()) ?>" method="POST" enctype="multipart/form-data" class="mx-auto">
             <div class="form-group">
                 <label for="NameInput">Nom</label>
                 <input type="text" class="form-control" id="NameInput" name="name" value="<?= $animal->getName() ?>">

@@ -53,14 +53,18 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+        <?php } else { ?>
+            <div class="alert alert-primary" role="alert">
+                Pas d'animaux à adopter aujourd'hui, revenez plus tard :)
+            </div>
         <?php } ?>
     </div>
 </div>
 <div id="homeProducts">
     <div class="container">
         <h2 class="my-5 text-center">Les derniers articles</h2>
-        <div class="row">
-            <?php if ($products) { ?>
+        <?php if ($products) { ?>
+            <div class="row">
                 <?php foreach ($products as $product) { ?>
                     <div class="col-md-4">
                         <div class="card">
@@ -69,35 +73,38 @@
                         </div>
                     </div>
                 <?php } ?>
-            <?php } ?>
-        </div>
+            </div>
+        <?php } else { ?>
+            <div class="alert alert-primary" role="alert">
+                Pas de produits à acheter aujourd'hui, revenez plus tard :)
+            </div>
+        <?php } ?>
     </div>
 </div>
 <div id="homeDonation">
     <div class="container">
-
-        <?php if (!isset($_SESSION["user"])): 
-        ?>
-
-        <h2 class="my-5 text-center">Se connecter pour faire une donation</h2>
-        <span class="navbar-text">
-            <a href="#" class="btn btn-outline-light mr-4">Se connecter</a>
-        </span>
-        <?php else: 
-        ?>
+                    
         <h2 class="my-5 text-center">Faire une donation</h2>
-        <div class="row">
-            <div class="col-md-5 text-center mx-auto">
-                <form action="index.php?page=home" method="POST">
-                    <div class="form-group">
-                        <label for="amount">Montant de la donation</label>
-                        <input type="number" required class="form-control" id="amount" name="amount" min="1" aria-describedby="amountHelp">
-                        <small id="amountHelp" class="form-text text-muted">Le montant de la donation est en euro €.</small>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Faire une donation</button>
-                </form>
+        <?php if (!isset($_SESSION["user"])): ?>
+            <div class="alert alert-primary" role="alert">
+                <h4 class="alert-heading">Connectez-vous pour faire une donation !</h4>
+                <p>Vous avez 5€ ? Vous pouvez les investir dans un kebab, ou bien faire une bonne action en faisant une donation. Créer vous un compte et aider nous à sauvez les animaux.</p>
+                <hr>
+                <a href="" class="btn btn-outline-primary">Connectez-vous !</a>
             </div>
-        </div>
+        <?php else: ?>
+            <div class="row">
+                <div class="col-md-5 text-center mx-auto">
+                    <form action="index.php?page=home" method="POST">
+                        <div class="form-group">
+                            <label for="amount">Montant de la donation</label>
+                            <input type="number" required class="form-control" id="amount" name="amount" min="1" aria-describedby="amountHelp">
+                            <small id="amountHelp" class="form-text text-muted">Le montant de la donation est en euro €.</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Faire une donation</button>
+                    </form>
+                </div>
+            </div>
         <?php endif 
         ?>
     </div>
