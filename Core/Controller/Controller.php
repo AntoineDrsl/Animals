@@ -94,7 +94,7 @@ class Controller
     {
         $host = 'http://' . $_SERVER['HTTP_HOST'];
         $baseUrl = dirname($_SERVER['REQUEST_URI']);
-        return $host . $baseUrl . 'assets/' . $link;
+        return $host . $baseUrl . '/assets/' . $link;
     }
 
     /**
