@@ -7,10 +7,7 @@
                 <input type="text" class="form-control" id="NameInput" name="name">
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <input type="file" name="image" id="image" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <label for="TypeSelect">Conseillé pour :</label>
                     <select class="form-control" id="TypeSelect" name="type_animal">
                         <option value="Chien">Chien</option>
@@ -22,7 +19,6 @@
                 </div>
             </div>
             <div class="form-row">
-
                 <div class="form-group col-md-6">
                     <label for="StockProduct">Stock</label><br>
                     <input type="number" class="form-control" id="StockProduct" name="stock">
@@ -31,11 +27,14 @@
                     <label for="PriceProduct">Prix du produit</label><br>
                     <input type="number" class="form-control" id="PriceProduct" name="price">
                 </div>
-                <div class="text-center my-4">
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                </div>
-                <?= $error ?>
             </div>
+            <div class="form-group">
+                    <input type="file" name="image" id="image" class="form-control-file my-3">
+                </div>
+            <div class="text-center my-4">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+            <?= $error ?>
         </form>
     </div>
 </div>
