@@ -35,6 +35,7 @@
                         <?php if($this->isAdmin()) { ?>
                             <a href="<?= $this->goto('admin') ?>" class="btn btn-outline-light mr-4">Admin</a>
                         <?php } ?>
+                        <a href="<?= $this->goto('cart') ?>" class="btn btn-outline-light mr-4">Panier</a>
                         <a href="<?= $this->goto('logout') ?>" class="btn btn-outline-light mr-4">Se déconnecter</a>
                     <?php } ?>
                 </span>

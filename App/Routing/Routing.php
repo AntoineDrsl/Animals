@@ -83,6 +83,9 @@ class Routing extends Router
             $this->productController->deleteProduct();
         }
 
+        else if($this->onPage('addToCart')){
+            $this->productController->addToCart();
+        }
 
         else if($this->onPage('signup')){
             $this->userController->signup();
@@ -94,6 +97,10 @@ class Routing extends Router
 
         else if($this->onPage('logout')){
             $this->userController->logout();
+        }
+
+        else if($this->onPage('cart')){
+            $this->userController->cart();
         }
 
         else if($this->onPage('admin')){

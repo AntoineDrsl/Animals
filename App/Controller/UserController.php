@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Model\ProductModel;
 use App\Model\UserModel;
 use Core\Model\DbInterface;
 use Core\Controller\Controller;
@@ -19,6 +20,7 @@ class UserController extends Controller
         $this->interface = new DbInterface();
         $this->model = new UserModel();
         $this->user = new User();
+        $this->ProductModel = new ProductModel();
     }
 
     /**
@@ -93,6 +95,7 @@ class UserController extends Controller
                         $_SESSION['user'] = $this->user;
                         $_SESSION['id'] = $this->user->getId();
                         $_SESSION['role'] = $this->user->getRole();
+                        $_SESSION['cart'] = [];
                         return $this->redirectToRoute('home');
                     } else {
                         $errorMessage = "Mot de passe incorrect";
@@ -124,5 +127,28 @@ class UserController extends Controller
 
         session_destroy();
         return $this->redirectToRoute('login');
+    }
+
+
+    public function cart(){
+
+        $this->isConnected();
+
+        $productInCart = [];
+        foreach($_SESSION['cart'] as $value){
+            
+            $product = $this->ProductModel->find($value);
+            
+            array_push($productInCart, $product);
+            
+        }
+
+        return $this->render('user/cart', [
+            'onPage' => "cart",
+            'productInCart' => $productInCart,
+
+
+        ]);
+
     }
 }
