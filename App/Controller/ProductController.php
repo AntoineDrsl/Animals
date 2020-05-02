@@ -22,9 +22,8 @@ class ProductController extends Controller{
     * @return void
     */
     public function presentationProducts(){
-        
-        $productModel = new ProductModel();
-        $products = $productModel->findAll();
+
+        $products = $this->ProductModel->findAll();
         
         return $this->render('products/products', [
             'onPage' => 'products',
@@ -124,4 +123,16 @@ class ProductController extends Controller{
 
         return $this->redirectToRoute('singleProducts', $_GET['id']);
     }
+
+
+    public function addToCart(){
+        if(!empty($_GET['id'])){
+            array_push($_SESSION['cart'], $_GET['id']);
+            return $this->redirectToRoute('products');
+        }
+
+        return $this->redirectToRoute('home');
+
+    }
+
 }

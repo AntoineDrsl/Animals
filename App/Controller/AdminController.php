@@ -29,17 +29,29 @@ class AdminController extends Controller{
     public function admin()
     {
 
+        if(!$this->isAdmin()){
+            $this->redirectToRoute('home');
+        }
+
         $animals = $this->animalModel->findAll();
         $products = $this->productModel->findAll();
-        $reservations = $this->reservationModel->findAll();
+        $reservationUser = $this->reservationModel->findByInnerJoin('user', [
+            "reservation" => "user_id",
+            "user" => "id"
+        ]);
         
+        $reservationsAnimal = $this->reservationModel->findByInnerJoin('animal', [
+            "reservation" => "animal_id",
+            "animal" => "id"
+        ]);
 
 
         return $this->render('admin/admin', [
             'onPage' => '',
             'animals' => $animals,
             'products' => $products,
-            'reservations' => $reservations,
+            'reservationUser' => $reservationUser,
+            'reservationAnimal' => $reservationsAnimal
         ]);
     }
 

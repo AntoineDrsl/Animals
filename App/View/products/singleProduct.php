@@ -12,8 +12,7 @@
                         <?= ' Nous avons ' . $product->getStock() . ' ' . strtolower($product->getName()) . ' en stock' ?><br>
                         <?= ' Prix unitaire : ' . $product->getPrice() . ' €'?>
                     </div>
-                    <a href="<?= $this->goto('deleteProduct', $product->getId()); ?>"><button class="btn btn-danger">Supprimer</button></a><br>
-                    <a href="<?= $this->goto('editProduct', $product->getId()); ?>"><button class="btn btn-warning">Modifier</button></a>
+                    <a href="<?= $this->goto('addToCart', $_GET['id']) ?>"><button class="btn btn-success">Ajouter au panier</button></a><br>
                 </div>
             </div>
         <?php } ?>

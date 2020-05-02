@@ -73,4 +73,22 @@ class Model
         return " LIMIT " . $criteria;
     
     }
+
+    /**
+     * Créer le ON d'une requête SQL avec INNER JOIN
+     * 
+     * 
+     */
+
+    public function createOn($criteria){
+        
+        $on = " ON ";
+        foreach($criteria as $key => $value){
+            $on .= $key . '.' . $value . " = "; 
+        }
+
+        return substr($on, 0, -3);
+
+
+    }
 }
