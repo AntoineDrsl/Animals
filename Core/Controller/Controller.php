@@ -92,8 +92,8 @@ class Controller
      */
     public function asset($link)
     {
-        return 'http://127.0.0.1:8000/assets/' . $link;
-       // return '/public/assets/' . $link;
+        $baseUrl = 'http://' . $_SERVER['HTTP_HOST'];
+        return $baseUrl . '/assets/' . $link;
     }
 
     /**
