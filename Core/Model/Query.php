@@ -97,11 +97,4 @@ class Query extends Model
 
     }
 
-
-    public function findInnerJoin($criteria = []){
-        return $this->db->query(' SELECT * FROM '. $this->model . $this->createInnerJoin(), 
-                                '\App\Entity\\' . ucfirst($this->model),
-                                true);
-    }
-
 }
