@@ -92,8 +92,9 @@ class Controller
      */
     public function asset($link)
     {
-        $baseUrl = 'http://' . $_SERVER['HTTP_HOST'];
-        return $baseUrl . '/assets/' . $link;
+        $host = 'http://' . $_SERVER['HTTP_HOST'];
+        $baseUrl = dirname($_SERVER['REQUEST_URI']);
+        return $host . $baseUrl . 'assets/' . $link;
     }
 
     /**
