@@ -76,14 +76,14 @@
 <div id="homeDonation">
     <div class="container">
 
-        <?php //if (!isset($_SESSION["user"])): 
+        <?php if (!isset($_SESSION["user"])): 
         ?>
 
         <h2 class="my-5 text-center">Se connecter pour faire une donation</h2>
         <span class="navbar-text">
             <a href="#" class="btn btn-outline-light mr-4">Se connecter</a>
         </span>
-        <?php //else: 
+        <?php else: 
         ?>
         <h2 class="my-5 text-center">Faire une donation</h2>
         <div class="row">
@@ -98,7 +98,7 @@
                 </form>
             </div>
         </div>
-        <?php //endif 
+        <?php endif 
         ?>
     </div>
 </div>

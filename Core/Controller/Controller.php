@@ -92,7 +92,8 @@ class Controller
      */
     public function asset($link)
     {
-        return '/public/assets/' . $link;
+        return '/Animals/public/assets/' . $link;
+       // return '/public/assets/' . $link;
     }
 
     /**

@@ -9,7 +9,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="TypeSelect">Type de l'animal</label>
+                    <label for="TypeSelect">Espèce</label>
                     <select class="form-control" id="TypeSelect" name="type">
                         <option value="chien">Chien</option>
                         <option value="chat">Chat</option>
@@ -19,21 +19,21 @@
                     </select>
                 </div>
             <div class="form-group col-md-6">
-                <label for="RaceName">Race de l'animal</label><br>
+                <label for="RaceName">Race</label><br>
                 <input type="text" class="form-control" id="RaceName"  name="race">
             </div>
             </div>
             <div class="form-row"> 
                 <div class="form-group col-md-4">
-                    <label for="SizeAnimal">Taille de l'animal</label><br>   
+                    <label for="SizeAnimal">Taille (cm)</label><br>   
                     <input type="number" class="form-control" id="SizeAnimal"  name="size">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="WeightAnimal">Poids de l'animal</label><br>
+                    <label for="WeightAnimal">Poids (Kg)</label><br>
                     <input type="number" class="form-control" id="WeightAnimal"  name="weight">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="AgeAnimal">Age de l'animal</label><br>
+                    <label for="AgeAnimal">Age (mois)</label><br>
                     <input type="number" class="form-control" id="AgeAnimal"  name="age">
                 </div> 
             </div>
