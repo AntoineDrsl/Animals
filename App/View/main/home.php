@@ -61,19 +61,20 @@
     </div>
 </div>
 <div id="homeProducts">
-    <div class="container">
+    <div class="container overflow-hidden">
         <h2 class="my-5 text-center">Les derniers articles</h2>
         <?php if ($products) { ?>
-            <div class="row">
-                <?php foreach ($products as $product) { ?>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img class="card-img-top" src="https://fakeimg.pl/250x100/" alt="<?= $product->getName() ?>">
-                            <h5 class="card-title"><?= $product->getName() ?></h5>
-                        </div>
+        <div id="slideContainer">
+            <?php foreach ($products as $product) { ?>
+                <div class="card h-75 w-25 text-center sliderItem">
+                    <img class="card-img-top h-100" src="<?= $this->asset('upload/imgProduct/' . $product->getImage()) ?>" alt="<?= $product->getName() ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $product->getName() ?></h5>
+                        <a href="<?= $this->goto('singleProduct', $animal->getId()) ?>"><button class="btn btn-primary">Voir plus</button></a>
                     </div>
-                <?php } ?>
-            </div>
+                </div>
+            <?php } ?>
+        </div>
         <?php } else { ?>
             <div class="alert alert-primary" role="alert">
                 Pas de produits à acheter aujourd'hui, revenez plus tard :)

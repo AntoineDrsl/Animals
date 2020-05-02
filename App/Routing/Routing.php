@@ -32,6 +32,9 @@ class Routing extends Router
      */
     public function route()
     {
+        if($this->pageNotDefined()) {
+            header('Location: index.php?page=home');
+        }
         if($this->onPage('home') || $this->pageNotDefined()) {
             $this->mainController->home();
         }

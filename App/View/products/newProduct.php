@@ -8,9 +8,6 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="file" name="image" id="image" class="form-control-file">
-                </div>
-                <div class="form-group col-md-6">
                     <label for="TypeSelect">Conseillé pour :</label>
                     <select class="form-control" id="TypeSelect" name="type_animal">
                         <option value="Chien">Chien</option>

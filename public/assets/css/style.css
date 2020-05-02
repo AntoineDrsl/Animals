@@ -51,3 +51,14 @@ p{
 #animals img{
     width: 100%;
 }
+
+#slideContainer{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100vw;
+}
+
+#slideContainer .card{
+    margin-right: 100px;
+    position: relative;
+}
