@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Model\ProductModel;
+use App\Model\ShoppingCartModel;
 use App\Model\UserModel;
 use Core\Model\DbInterface;
 use Core\Controller\Controller;
@@ -21,6 +22,7 @@ class UserController extends Controller
         $this->model = new UserModel();
         $this->user = new User();
         $this->ProductModel = new ProductModel();
+        $this->ShoppingCartModel = new ShoppingCartModel();
     }
 
     /**
@@ -176,18 +178,23 @@ class UserController extends Controller
 
                 $_POST['user_id'] = $_SESSION['id'];
                 
-                // $_POST['total_amount'] = $montant;
-                
                 $date = new \DateTime();
                 $_POST['datetime'] = $date->format('Y-m-d H:i:s');
 
                 $_POST['state'] = 2;
     
-                 if(!empty($_POST['user_id']) && !empty($_POST['total_amount']) && !empty($_POST['datetime']) && !empty($_POST['state'])) {
+                if(!empty($_POST['user_id']) && !empty($_POST['total_amount']) && !empty($_POST['datetime']) && !empty($_POST['state'])) {
                     $this->interface->save($_POST, 'shoppingcart');
                     $_SESSION['cart'] = [];
+
+                    $commandid = $this->ShoppingCartModel->findOneBy(["datetime" => $date->format('Y-m-d H:i:s')]);
+                    $commandid = $commandid->getId();
+
+                    $this->interface->save(["shoppingcart_id" => $commandid, "product_id" => $_SESSION['cart'], "quantity" => 0, "amount" => $montant], 'shoppingcart_line');
+
                     $this->redirectToRoute('confirm');
-                 }
+                }
+
 
 
             }

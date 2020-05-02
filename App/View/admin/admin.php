@@ -99,6 +99,35 @@
         </div>
 
     </div>
+    
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1>Liste des commandes en cours</h1>
+            <?php if($reservationAnimal && $reservationUser){?>
+                <table class="table table-dark">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Nom du client</th>
+                        <th scope="col">Nom de l'animal</th>
+                        <th scope="col">Date du rendez-vous</th>
+                        <th scope="col">Date de l'enregistrement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td><?= $reservationUser->firstname . " " . $reservationUser->lastname?></td>
+                                <td><?= $reservationAnimal->name ?></td>
+                                <td><?= $reservationAnimal->getRendezVous() ?></td>
+                                <td><?= $reservationAnimal->getDatetime() ?></td>
+                            </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+            <a href="<?= $this->goto('newProduct') ?>"><button class="btn btn-primary mb-5">Ajouter un produit</button></a>
+        </div>
+
+    </div>
 
     
 </div>

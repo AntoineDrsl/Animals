@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\AnimalModel;
+use App\Model\CommandModel;
 use App\Model\ProductModel;
 use App\Model\ReservationModel;
 use Core\Controller\Controller;
