@@ -29,23 +29,34 @@ class ReservationController extends Controller{
 
     public function bookAnimal(){
         
+        $errorMessage = '';
 
         if(!empty($_POST)){
 
-            if(!empty($_GET['id'])){
+            if(!empty($_POST['rendezvous'])) {
 
-                $user = $this->UserModel->findOneBy(["id" => $_SESSION["id"]]);
+                if(!empty($_GET['id'])){
 
-                $_POST['user_id'] = $user->getId();
+                    $user = $this->UserModel->findOneBy(["id" => $_SESSION["id"]]);
 
-                $date = new DateTime();
-                $_POST['datetime'] = $date->format('Y-m-d H:i:s');
-    
-                if(!empty($_POST['user_id']) && !empty($_POST['animal_id']) && !empty($_POST['rendezvous']) && !empty($_POST['datetime'])){
-                    $this->dbInterface->save($_POST, 'reservation');
-                    return $this->redirectToRoute('singleAnimal', $_GET['id']);
+                    $_POST['user_id'] = $user->getId();
+
+                    $date = new DateTime();
+                    $_POST['datetime'] = $date->format('Y-m-d H:i:s');
+
+                    $_POST['animal_id'] = $_GET['id'];
+        
+                    if(!empty($_POST['user_id']) && !empty($_POST['animal_id']) && !empty($_POST['rendezvous']) && !empty($_POST['datetime'])){
+                        $this->dbInterface->save($_POST, 'reservation');
+                        return $this->redirectToRoute('singleAnimal', $_GET['id']);
+                    }
+                } else {
+                    $errorMessage = "Un problème est survenu. Veuillez réessayer";
                 }
-            } 
+
+            } else {
+                $errorMessage = "Veuillez remplir tous les champs";
+            }
            
         }
 
