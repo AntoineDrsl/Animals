@@ -103,6 +103,12 @@ class Routing extends Router
             $this->userController->cart();
         }
 
+        else if($this->onPage('paiement')){
+            $this->userController->paiement();
+        }
+
+
+
         else if($this->onPage('admin')){
             $this->adminController->admin();
         }

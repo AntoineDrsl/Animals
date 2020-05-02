@@ -26,6 +26,7 @@
                     <?php }?>
                 </tbody>
             </table>
+            <a href="<?= $this->goto('paiement') ?>"><button class="btn btn-success">Passer la commande</button></a><br>
         <?php } else{?>
 
             <h1 class="text-center">Rien dans votre panier</h1>

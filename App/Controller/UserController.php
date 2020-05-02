@@ -151,4 +151,35 @@ class UserController extends Controller
         ]);
 
     }
+
+
+    public function paiement(){
+
+        $this->isConnected();
+
+        if(!empty($_SESSION['cart'])){
+            
+            $productInCart = [];
+            $montant = 0;
+            foreach($_SESSION['cart'] as $value){
+                
+                $product = $this->ProductModel->find($value);
+                
+                $montant += $product->getPrice();
+                
+
+                array_push($productInCart, $product);
+                
+            }
+    
+            var_dump($montant);
+
+            return $this->render('user/paiement', [
+                'onPage' => ''
+            ]);
+        }
+
+        $this->redirectToRoute('home');
+
+    }
 }
