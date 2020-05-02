@@ -92,7 +92,7 @@ class Controller
      */
     public function asset($link)
     {
-        return '/Animals/public/assets/' . $link;
+        return 'http://127.0.0.1:8000/assets/' . $link;
        // return '/public/assets/' . $link;
     }
 

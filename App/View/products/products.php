@@ -1,5 +1,5 @@
 <div class="container text-center">
-    <h1>Voici la liste des produits que nous possedons</h1>
+    <h1 class="my-5 text-center">Voici la liste des produits que nous possedons</h1>
     <a href="<?= $this->goto('newProduct') ?>"><button class="btn btn-primary">Ajouter un produit</button></a>
     <div class="row mt-5">
         <?php if($products) { ?> 
