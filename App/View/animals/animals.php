@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container text-center">
     <h1 class="my-5 text-center">Animaux à adopter</h1>
-    <div class="row">
+    <a href="<?= $this->goto('newAnimal') ?>"><button class="btn btn-primary">Ajouter un animal</button></a>
+    <div class="row mt-5">
         <?php if ($animals) { ?>
             <?php foreach ($animals as $animal) { ?>
                 <div class="col-md-4">
@@ -14,8 +15,5 @@
                 </div>
             <?php } ?>
         <?php } ?>
-    </div>
-    <div class="text-center">
-        <a href="<?= $this->goto('newAnimal') ?>"><button class="btn btn-primary mt-5">Ajouter un animal</button></a>
     </div>
 </div>

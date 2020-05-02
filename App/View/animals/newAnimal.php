@@ -1,7 +1,6 @@
-
 <div class="container">
     <h1 class="text-center my-5">Entrer un nouvel animal</h1>
-    <div class="row">      
+    <div class="row">
         <form action="<?= $this->goto('newAnimal') ?>" method="POST" enctype="multipart/form-data" class="mx-auto">
             <div class="form-group">
                 <label for="NameInput">Nom</label>
@@ -18,24 +17,24 @@
                         <option value="ecureuil">Ecureuil</option>
                     </select>
                 </div>
-            <div class="form-group col-md-6">
-                <label for="RaceName">Race</label><br>
-                <input type="text" class="form-control" id="RaceName"  name="race">
+                <div class="form-group col-md-6">
+                    <label for="RaceName">Race</label><br>
+                    <input type="text" class="form-control" id="RaceName" name="race">
+                </div>
             </div>
-            </div>
-            <div class="form-row"> 
+            <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="SizeAnimal">Taille (cm)</label><br>   
-                    <input type="number" class="form-control" id="SizeAnimal"  name="size">
+                    <label for="SizeAnimal">Taille (cm)</label><br>
+                    <input type="number" class="form-control" id="SizeAnimal" name="size">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="WeightAnimal">Poids (Kg)</label><br>
-                    <input type="number" class="form-control" id="WeightAnimal"  name="weight">
+                    <input type="number" class="form-control" id="WeightAnimal" name="weight">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="AgeAnimal">Age (mois)</label><br>
-                    <input type="number" class="form-control" id="AgeAnimal"  name="age">
-                </div> 
+                    <input type="number" class="form-control" id="AgeAnimal" name="age">
+                </div>
             </div>
             <div class="form-group">
                 <input type="file" name="image" id="image" class="form-control-file my-3">
