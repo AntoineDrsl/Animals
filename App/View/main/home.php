@@ -1,4 +1,4 @@
-<?php if (count($_POST)>0) echo "<div class='border-bottom border-success text-center'><p>La donation a bien été reçue !</p></div>"; ?>
+<?php if (count($_POST) > 0) echo "<div class='border-bottom border-success text-center'><p>La donation a bien été reçue !</p></div>"; ?>
 <div id="homePresentation">
     <div id="homeContent1" class="container">
         <h1 class="text-white text-center my-5">Bienvenue sur le site de Animals</h1>
@@ -28,14 +28,14 @@
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 75vh; overflow: hidden">
                 <ol class="carousel-indicators">
                     <?php foreach ($animals as $key => $animal) { ?>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="<?php $key ?>" <?php if($key === 0) { ?> class="active" <?php } ?>></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="<?php $key ?>" <?php if ($key === 0) { ?> class="active" <?php } ?>></li>
                     <?php } ?>
                 </ol>
                 <div class="carousel-inner">
                     <?php foreach ($animals as $key => $animal) { ?>
-                        <div class="carousel-item <?php if($key === 0) { ?> active <?php } ?>">
-                        <a href="<?= $this->goto('singleAnimal', $animal->getId()) ?>">
-                            <img class="d-block w-100 h-100" src="<?= $this->asset('upload/imgAnimal/' . $animal->getImage()) ?>" alt="slide">
+                        <div class="carousel-item <?php if ($key === 0) { ?> active <?php } ?>">
+                            <a href="<?= $this->goto('singleAnimal', $animal->getId()) ?>">
+                                <img class="d-block w-100 h-100" src="<?= $this->asset('upload/imgAnimal/' . $animal->getImage()) ?>" alt="slide">
                             </a>
                             <div class="carousel-caption d-none d-md-block" style="position: absolute; top: 25px; height: 100px; background-color: rgba(25, 25, 25, 0.5)">
                                 <h5><?= $animal->getName() ?></h5>
@@ -64,36 +64,52 @@
     <div class="container overflow-hidden">
         <h2 class="my-5 text-center">Les derniers articles</h2>
         <?php if ($products) { ?>
-        <div id="slideContainer">
-            <?php foreach ($products as $product) { ?>
-                <div class="card h-75 w-25 text-center sliderItem">
-                    <img class="card-img-top h-100" src="<?= $this->asset('upload/imgProduct/' . $product->getImage()) ?>" alt="<?= $product->getName() ?>">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $product->getName() ?></h5>
-                        <a href="<?= $this->goto('singleProduct', $animal->getId()) ?>"><button class="btn btn-primary">Voir plus</button></a>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-        <?php } else { ?>
-            <div class="alert alert-primary" role="alert">
-                Pas de produits à acheter aujourd'hui, revenez plus tard :)
-            </div>
-        <?php } ?>
+                    <div class="slideshow-container">
+                <?php foreach ($products as $key => $product) { ?>
+
+  <div class="mySlides fade">
+    <div class="numbertext"><?= $key + 1?> / 5</div>
+    <img class="d-block w-100" src="<?= $this->asset('upload/imgProduct/' . $product->getImage()) ?>" alt="slide">
+    <a href="<?= $this->goto('singleProduct', $product->getId()) ?>"><button class="btn btn-primary buttonsee">Voir le produit <?= $product->getName() ?></button></a>
+    
+  </div>
+
+                <?php } ?>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span>
+  <span class="dot" onclick="currentSlide(5)"></span>
+</div>
+
     </div>
+<?php } else { ?>
+    <div class="alert alert-primary" role="alert">
+        Pas de produits à acheter aujourd'hui, revenez plus tard :)
+    </div>
+<?php } ?>
+</div>
 </div>
 <div id="homeDonation">
     <div class="container">
-                    
+
         <h2 class="my-5 text-center">Faire une donation</h2>
-        <?php if (!isset($_SESSION["user"])): ?>
+        <?php if (!isset($_SESSION["user"])) : ?>
             <div class="alert alert-primary" role="alert">
                 <h4 class="alert-heading">Connectez-vous pour faire une donation !</h4>
                 <p>Vous avez 5€ ? Vous pouvez les investir dans un kebab, ou bien faire une bonne action en faisant une donation. Créer vous un compte et aider nous à sauvez les animaux.</p>
                 <hr>
                 <a href="" class="btn btn-outline-primary">Connectez-vous !</a>
             </div>
-        <?php else: ?>
+        <?php else : ?>
             <div class="row">
                 <div class="col-md-5 text-center mx-auto">
                     <form action="index.php?page=home" method="POST">
@@ -106,7 +122,38 @@
                     </form>
                 </div>
             </div>
-        <?php endif 
+        <?php endif
         ?>
     </div>
 </div>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
