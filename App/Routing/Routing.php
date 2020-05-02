@@ -109,6 +109,9 @@ class Routing extends Router
         else if($this->onPage('paiement')){
             $this->userController->paiement();
         }
+        else if($this->onPage('confirm')){
+            $this->userController->confirm();
+        }
 
 
 

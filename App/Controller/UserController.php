@@ -157,6 +157,7 @@ class UserController extends Controller
 
         $this->isConnected();
 
+
         if(!empty($_SESSION['cart'])){
             
             $productInCart = [];
@@ -171,15 +172,41 @@ class UserController extends Controller
                 array_push($productInCart, $product);
                 
             }
+            if(!empty($_POST)){
+
+                $_POST['user_id'] = $_SESSION['id'];
+                
+                // $_POST['total_amount'] = $montant;
+                
+                $date = new \DateTime();
+                $_POST['datetime'] = $date->format('Y-m-d H:i:s');
+
+                $_POST['state'] = 2;
     
-            var_dump($montant);
+                 if(!empty($_POST['user_id']) && !empty($_POST['total_amount']) && !empty($_POST['datetime']) && !empty($_POST['state'])) {
+                    $this->interface->save($_POST, 'shoppingcart');
+                    $_SESSION['cart'] = [];
+                    $this->redirectToRoute('confirm');
+                 }
+
+
+            }
 
             return $this->render('user/paiement', [
-                'onPage' => ''
+                'onPage' => '',
+                'montant' => $montant
             ]);
         }
 
         $this->redirectToRoute('home');
 
+    }
+
+
+
+    public function confirm(){
+        return $this->render('user/confirm', [
+            'onPage' => '',
+        ]);
     }
 }
