@@ -77,4 +77,31 @@ class Query extends Model
                             '\App\Entity\\' . ucfirst($this->model),
                             true);
     }
+
+
+
+    /**
+     * Mise en relation de deux tables en fonction d'un champs 
+     * 
+     * @param string $class
+     * @param array $criteria
+     * 
+     * @return object|null
+     */
+
+    public function findByInnerJoin($class, $criteria = []){
+
+        return $this->db->query('SELECT * FROM ' . $this->model . ' INNER JOIN ' . $class . $this->createOn($criteria),
+                                '\App\Entity\\' . ucfirst($this->model),
+                                true);
+
+    }
+
+
+    public function findInnerJoin($criteria = []){
+        return $this->db->query(' SELECT * FROM '. $this->model . $this->createInnerJoin(), 
+                                '\App\Entity\\' . ucfirst($this->model),
+                                true);
+    }
+
 }
