@@ -41,7 +41,7 @@ class ReservationController extends Controller{
 
                     $_POST['user_id'] = $user->getId();
 
-                    $date = new DateTime();
+                    $date = new \DateTime();
                     $_POST['datetime'] = $date->format('Y-m-d H:i:s');
 
                     $_POST['animal_id'] = $_GET['id'];
