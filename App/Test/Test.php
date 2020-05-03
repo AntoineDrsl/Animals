@@ -69,7 +69,7 @@ class Test
                 'user_id' => 'user(id)'
             ]
         );
-        $this->createDb->createTable('shoppingcart_line',
+        $this->createDb->createTable('shoppingcartline',
             [
                 'id' => 'INT PRIMARY KEY NOT NULL AUTO_INCREMENT',
                 'shoppingcart_id' => 'INT NOT NULL',

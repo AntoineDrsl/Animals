@@ -16,14 +16,14 @@ class ShoppingCart
      * 
      * @var int
      */
-    private $user;
+    private $user_id;
 
     /**
      * Montant total de la commande
      * 
      * @var decimal
      */
-    private $totalAmount;
+    private $total_amount;
 
     /**
      * Date de la commande
@@ -64,7 +64,7 @@ class ShoppingCart
      */
     public function getUser()
     {
-        return $this->user;
+        return $this->user_id;
     }
 
     /**
@@ -72,9 +72,9 @@ class ShoppingCart
      * 
      * @return self
      */
-    public function setUser($user)
+    public function setUser($user_id)
     {
-        $this->user = $user;
+        $this->user_id = $user_id;
 
         return $this;
     }
@@ -84,7 +84,7 @@ class ShoppingCart
      */
     public function getTotalAmount()
     {
-        return $this->totalAmount;
+        return $this->total_amount;
     }
 
     /**
@@ -92,9 +92,9 @@ class ShoppingCart
      * 
      * @return self
      */
-    public function setTotalAmount($totalAmount)
+    public function setTotalAmount($total_amount)
     {
-        $this->totalAmount = $totalAmount;
+        $this->total_amount = $total_amount;
 
         return $this;
     }

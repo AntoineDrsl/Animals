@@ -72,7 +72,6 @@
     </div>
 
     <div class="row">
-
         <div class="col-lg-12">
             <h1>Liste des rendez-vous</h1>
             <?php if($reservationAnimal && $reservationUser){?>
@@ -86,18 +85,72 @@
                         </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <td><?= $reservationUser->firstname . " " . $reservationUser->lastname?></td>
-                                <td><?= $reservationAnimal->name ?></td>
-                                <td><?= $reservationAnimal->getRendezVous() ?></td>
-                                <td><?= $reservationAnimal->getDatetime() ?></td>
-                            </tr>
-                        <?php }?>
+                        <tr>
+                            <td><?= $reservationUser->firstname . " " . $reservationUser->lastname?></td>
+                            <td><?= $reservationAnimal->name ?></td>
+                            <td><?= $reservationAnimal->getRendezVous() ?></td>
+                            <td><?= $reservationAnimal->getDatetime() ?></td>
+                        </tr>
                     </tbody>
                 </table>
+            <?php }?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Liste des commandes</h1>
+            <?php if($commands){?>
+                <table class="table table-dark">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nom du client</th>
+                            <th scope="col">Produits & quantité</th>
+                            <th scope="col">Montant total</th>
+                            <th scope="col">Date de la commande</th>
+                            <th scope="col">Etat</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($commands as $command) { ?>
+                            <tr>
+                                <td><?= $command['user']->getFirstname() . " " . $command['user']->getLastname()?></td>
+                                <td>
+                                    <?php foreach($command['products'] as $product) { ?>
+                                        <?= $product['product']->getName() ?> : <?= $product['quantity'] ?> (<?= $product['product']->getPrice() * $product['quantity'] ?>€)<br>
+                                    <?php } ?>
+                                </td>
+                                <td><?= $command['command']->getTotalAmount() ?> €</td>
+                                <td><?= $command['command']->getDatetime() ?></td>
+                                <td>
+                                    <?php if($command['command']->getState() == 2) { ?>
+                                        En attente de validation
+                                    <?php } elseif($command['command']->getState() == 1) { ?>
+                                        Erreur de paiement
+                                    <?php } elseif($command['command']->getState() == 3) { ?>  
+                                        En cours de livraison
+                                    <?php } elseif($command['command']->getState() == 4) { ?>
+                                        Livré
+                                    <?php } ?>
+                                </td>
+                                <td>
+                                    <form action="<?= $this->goto('changeState', $command['command']->getId()) ?>" method="POST">
+                                        <select name="state" id="state">
+                                            <option value="1" <?php if($command['command']->getState() == 1) { ?> selected <?php } ?>>Erreur de paiement</option>
+                                            <option value="2"  <?php if($command['command']->getState() == 2) { ?> selected <?php } ?>>En attente de livraison</option>
+                                            <option value="3" <?php if($command['command']->getState() == 3) { ?> selected <?php } ?>>En cours de livraison</option>
+                                            <option value="4" <?php if($command['command']->getState() == 4) { ?> selected <?php } ?>>Livré</option>
+                                        </select>
+                                        <input type="submit" class="btn btn-outline-light">
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            <?php }?>
             <a href="<?= $this->goto('newProduct') ?>"><button class="btn btn-primary mb-5">Ajouter un produit</button></a>
         </div>
-
     </div>
 
     

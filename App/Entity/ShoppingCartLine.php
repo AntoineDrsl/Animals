@@ -16,14 +16,14 @@ class ShoppingCartLine
      * 
      * @var int
      */
-    private $shoppingCart;
+    private $shoppingcart_id;
 
     /**
      * Produit contenu dans la ligne de commande
      * 
      * @var int
      */
-    private $product;
+    private $product_id;
 
     /**
      * Quantité du produit contenu dans la ligne de commande
@@ -64,7 +64,7 @@ class ShoppingCartLine
      */
     public function getShoppingCart()
     {
-        return $this->shoppingCart;
+        return $this->shoppingcart_id;
     }
 
     /**
@@ -72,9 +72,9 @@ class ShoppingCartLine
      * 
      * @return self
      */
-    public function setShoppingCart($shoppingCart)
+    public function setShoppingCart($shoppingcart_id)
     {
-        $this->shoppingCart = $shoppingCart;
+        $this->shoppingcart_id = $shoppingcart_id;
 
         return $this;
     }
@@ -84,7 +84,7 @@ class ShoppingCartLine
      */
     public function getProduct()
     {
-        return $this->product;
+        return $this->product_id;
     }
 
     /**
@@ -92,9 +92,9 @@ class ShoppingCartLine
      * 
      * @return self
      */
-    public function setProduct($product)
+    public function setProduct($product_id)
     {
-        $this->product = $product;
+        $this->product_id = $product_id;
 
         return $this;
     }

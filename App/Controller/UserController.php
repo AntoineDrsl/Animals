@@ -183,13 +183,20 @@ class UserController extends Controller
                 }
 
                 $_SESSION['cart'] = [];
-                return $this->redirectToRoute('cart');
+                $productInCart = [];
+                return $this->render('user/cart', [
+                    'onPage' => "cart",
+                    'productInCart' => $productInCart,
+                    'totalAmount' => $totalAmount,
+                    'successMessage' => 'Merci pour votre achat! Un administrateur va le valider et vous l\'envoyer !'
+                ]);
             }
 
             return $this->render('user/cart', [
                 'onPage' => "cart",
                 'productInCart' => $productInCart,
-                'totalAmount' => $totalAmount
+                'totalAmount' => $totalAmount,
+                'successMessage' => null
             ]);
 
         }

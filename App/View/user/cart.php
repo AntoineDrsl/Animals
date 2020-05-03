@@ -1,11 +1,16 @@
 
 <div class="container-fluid">
+    <?php if($successMessage) { ?>
+        <div class="alert alert-success" role="alert">
+            <p><?= $successMessage ?></p>
+        </div>
+    <?php } ?>
 
     <div class="row">
 
         <div class="col-lg-12">
         <?php if($productInCart){?>
-        <h1>Liste des produits dans mon panier</h1>
+        <h1 class="my-5">Liste des produits dans mon panier</h1>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -34,7 +39,7 @@
             </form>
         <?php } else{?>
 
-            <h1 class="text-center">Rien dans votre panier</h1>
+            <h1 class="text-center my-5">Rien dans votre panier</h1>
             <div class="btn mx-auto w-100">
                 <a href="<?= $this->goto('products') ?>"><button class="btn btn-success">Voir la liste des produits</button></a><br>
             </div>
