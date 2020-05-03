@@ -137,7 +137,9 @@ class Controller
     public function isConnected()
     {
         if(!isset($_SESSION['user'])) {
-            $this->redirectToRoute('home');
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -147,7 +149,9 @@ class Controller
     public function isNotConnected()
     {
         if(isset($_SESSION['user'])) {
-            $this->redirectToRoute('home');
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -156,7 +160,7 @@ class Controller
      */
     public function isAdmin()
     {  
-        if(isset($_SESSION['user']) && $_SESSION['role'] != "ROLE_ADMIN") {
+        if((isset($_SESSION['user']) && $_SESSION['role'] != "ROLE_ADMIN") || !isset($_SESSION['user'])) {
             return false;
         }
         else{

@@ -106,7 +106,7 @@
                 <h4 class="alert-heading">Connectez-vous pour faire une donation !</h4>
                 <p>Vous avez 5€ ? Vous pouvez les investir dans un kebab, ou bien faire une bonne action en faisant une donation. Créer vous un compte et aider nous à sauvez les animaux.</p>
                 <hr>
-                <a href="" class="btn btn-outline-primary">Connectez-vous !</a>
+                <a href="<?= $this->goto('login') ?>" class="btn btn-outline-primary">Connectez-vous !</a>
             </div>
         <?php else : ?>
             <div class="row">

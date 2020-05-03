@@ -29,55 +29,59 @@ class ReservationController extends Controller{
 
     public function bookAnimal(){
         
-        $errorMessage = '';
+        if(!$this->isConnected()) {
+            return $this->redirectToRoute('login');
+        } else {
+            
+            $errorMessage = '';
 
-        if(!empty($_POST)){
+            if(!empty($_POST)){
 
-            if(!empty($_POST['rendezvous'])) {
+                if(!empty($_POST['rendezvous'])) {
 
-                if(!empty($_GET['id'])){
+                    if(!empty($_GET['id'])){
 
-                    $user = $this->UserModel->findOneBy(["id" => $_SESSION["id"]]);
+                        $user = $this->UserModel->findOneBy(["id" => $_SESSION["id"]]);
 
-                    $_POST['user_id'] = $user->getId();
+                        $_POST['user_id'] = $user->getId();
 
-                    $date = new \DateTime();
-                    $_POST['datetime'] = $date->format('Y-m-d H:i:s');
+                        $date = new \DateTime();
+                        $_POST['datetime'] = $date->format('Y-m-d H:i:s');
 
-                    $_POST['animal_id'] = $_GET['id'];
-        
-                    if(!empty($_POST['user_id']) && !empty($_POST['animal_id']) && !empty($_POST['rendezvous']) && !empty($_POST['datetime'])){
-                        $this->dbInterface->save($_POST, 'reservation');
-                        return $this->redirectToRoute('singleAnimal', $_GET['id']);
+                        $_POST['animal_id'] = $_GET['id'];
+            
+                        if(!empty($_POST['user_id']) && !empty($_POST['animal_id']) && !empty($_POST['rendezvous']) && !empty($_POST['datetime'])){
+                            $this->dbInterface->save($_POST, 'reservation');
+                            return $this->redirectToRoute('singleAnimal', $_GET['id']);
+                        }
+                    } else {
+                        $errorMessage = "Un problème est survenu. Veuillez réessayer";
                     }
+
                 } else {
-                    $errorMessage = "Un problème est survenu. Veuillez réessayer";
+                    $errorMessage = "Veuillez remplir tous les champs";
                 }
-
-            } else {
-                $errorMessage = "Veuillez remplir tous les champs";
-            }
-           
-        }
-
-        if(!empty($_GET['id'])){
-            $animal = $this->AnimalModel->find($_GET['id']);
             
-            if(!$animal){
+            }
 
-                return $this->redirectToRoute('home');
+            if(!empty($_GET['id'])){
+                $animal = $this->AnimalModel->find($_GET['id']);
                 
+                if(!$animal){
+
+                    return $this->redirectToRoute('home');
+                    
+                }
+                
+                return $this->render('animals/bookAnimal', [
+                    'animal' => $animal,
+                    'onPage' => 'bookAnimal'
+                ]);
             }
-            
-            return $this->render('animals/bookAnimal', [
-                'animal' => $animal,
-                'onPage' => 'bookAnimal'
-            ]);
+
+            return $this->redirectToRoute('home');
+
         }
-
-        return $this->redirectToRoute('home');
-        
-
     }
 
 

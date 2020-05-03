@@ -24,9 +24,19 @@
             </div>
         </div>
         <div class="text-center mb-5">
-            <a href="<?= $this->goto('editAnimal', $animal->getId()); ?>"><button class="btn btn-warning mx-3">Modifier</button></a>
-            <a href="<?= $this->goto('removeAnimal', $animal->getId()); ?>"><button class="btn btn-danger mx-3">Supprimer</button></a>
-            <a href="<?= $this->goto('bookAnimal', $animal->getId()); ?>"><button class="btn btn-primary mx-3">Reservez cet animal !</button></a>
+            <?php if($this->isAdmin()) { ?>
+                <a href="<?= $this->goto('editAnimal', $animal->getId()); ?>"><button class="btn btn-warning mx-3">Modifier</button></a>
+                <a href="<?= $this->goto('deleteAnimal', $animal->getId()); ?>"><button class="btn btn-danger mx-3">Supprimer</button></a>
+            <?php } elseif($this->isConnected()) { ?>
+                <a href="<?= $this->goto('bookAnimal', $animal->getId()); ?>"><button class="btn btn-primary mx-3">Reservez cet animal !</button></a>
+            <?php } else { ?>
+                <div class="alert alert-primary" role="alert">
+                <h4 class="alert-heading">Connectez-vous pour réserver un animal !</h4>
+                <p>Vous avez toujours rêvé d'être accompagné par un petit chien, un petit chat trop mignon ? Alors faites une bonne action en même temps en adoptant un animal abandonné.</p>
+                <hr>
+                <a href="<?= $this->goto('login') ?>" class="btn btn-outline-primary">Connectez-vous !</a>
+            </div>
+            <?php } ?>
         </div>
     <?php } ?>
 </div>

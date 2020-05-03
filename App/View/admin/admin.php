@@ -25,7 +25,7 @@
                                 <td>
                                     <a href="<?= $this->goto('singleAnimal', $animal->getId()) ?>"><button class="btn btn-primary">Voir plus</button></a>
                                     <a href="<?= $this->goto('editAnimal', $animal->getId()); ?>"><button class="btn btn-warning mx-3">Modifier</button></a>
-                                    <a href="<?= $this->goto('removeAnimal', $animal->getId()); ?>"><button class="btn btn-danger mx-3">Supprimer</button></a>
+                                    <a href="<?= $this->goto('deleteAnimal', $animal->getId()); ?>"><button class="btn btn-danger mx-3">Supprimer</button></a>
                                 </td>
                             </tr>
                         <?php }?>

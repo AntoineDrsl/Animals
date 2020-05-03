@@ -1,10 +1,12 @@
 <div class="container text-center">
     <h1 class="my-5 text-center">Animaux à adopter</h1>
-    <a href="<?= $this->goto('newAnimal') ?>"><button class="btn btn-primary">Ajouter un animal</button></a>
+    <?php if($this->isAdmin()) { ?>
+        <a href="<?= $this->goto('newAnimal') ?>"><button class="btn btn-primary">Ajouter un animal</button></a>
+    <?php } ?>
     <div class="row mt-5">
         <?php if ($animals) { ?>
             <?php foreach ($animals as $animal) { ?>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4">
                     <div class="card h-75 text-center">
                         <img class="card-img-top h-100" src="<?= $this->asset('upload/imgAnimal/' . $animal->getImage()) ?>" alt="<?= $animal->getName() ?>">
                         <div class="card-body">
