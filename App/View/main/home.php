@@ -64,39 +64,38 @@
     <div class="container overflow-hidden">
         <h2 class="my-5 text-center">Les derniers articles</h2>
         <?php if ($products) { ?>
-                    <div class="slideshow-container">
+            <div class="slideshow-container">
                 <?php foreach ($products as $key => $product) { ?>
 
-  <div class="mySlides fade">
-    <div class="numbertext"><?= $key + 1?> / 5</div>
-    <img class="d-block w-100" src="<?= $this->asset('upload/imgProduct/' . $product->getImage()) ?>" alt="slide">
-    <a href="<?= $this->goto('singleProduct', $product->getId()) ?>"><button class="btn btn-primary buttonsee">Voir le produit <?= $product->getName() ?></button></a>
-    
-  </div>
+                    <div class="mySlides fade">
+                        <div class="numbertext"><?= $key + 1?> / 5</div>
+                        <img class="d-block w-100" src="<?= $this->asset('upload/imgProduct/' . $product->getImage()) ?>" alt="slide">
+                        <a href="<?= $this->goto('singleProduct', $product->getId()) ?>"><button class="btn btn-primary buttonsee">Voir le produit <?= $product->getName() ?></button></a> 
+                    </div>
 
                 <?php } ?>
+                <!-- Next and previous buttons -->
+                <a id="prev">&#10094;</a>
+                <a id="next">&#10095;</a>
+            </div>
+            <br>
 
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>
+            <div style="text-align:center">
+                <?php foreach ($products as $key => $product) { ?>
+                    <span class="dot"></span>
+                <?php } ?>
+            </div>
 
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-  <span class="dot" onclick="currentSlide(4)"></span>
-  <span class="dot" onclick="currentSlide(5)"></span>
-</div>
+            </div>
 
+        <?php } else { ?>
+
+            <div class="alert alert-primary" role="alert">
+                Pas de produits à acheter aujourd'hui, revenez plus tard :)
+            </div>
+
+        <?php } ?>
     </div>
-<?php } else { ?>
-    <div class="alert alert-primary" role="alert">
-        Pas de produits à acheter aujourd'hui, revenez plus tard :)
-    </div>
-<?php } ?>
-</div>
 </div>
 <div id="homeDonation">
     <div class="container">
@@ -127,33 +126,15 @@
     </div>
 </div>
 
+<script src="<?= $this->asset('js/anim.js') ?>"></script>
 <script>
-var slideIndex = 1;
-showSlides(slideIndex);
+    var slider = new Slider();
+    slider.launchSlider();
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+    slider.prev.addEventListener('click', function() { slider.plusSlides(-1) });
+    slider.next.addEventListener('click', function() { slider.plusSlides(1) });
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
+    for(var i = 0; i < slider.dots.length; i++) {
+        slider.dots[i].addEventListener('click', function() { slider.currentSlide(i) })
+    }
 </script>

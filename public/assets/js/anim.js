@@ -1,31 +1,40 @@
-class Slider{
+class Slider {
 
-    constructor (el) {
-
-        this.items = document.getElementsByClassName(el);
-        this.offset;
-
+    constructor() {
+        this.slideIndex = 1;
+        this.prev = document.getElementById('prev');
+        this.next = document.getElementById('next');
+        this.dots = document.getElementsByClassName('dot');
     }
 
     launchSlider() {
-        var offset = this.offset;
-        var items = this.items;
-        var widthContainer = document.getElementById('slideContainer').offsetWidth;
-        console.log(widthContainer);
-        this._slide(offset, items, widthContainer);
+        this.showSlides(this.slideIndex);
     }
-
-    _slide(offset, items, widthContainer) {
-
-        setInterval(function() {
-            offset = offset + 50;
-            for(var i = 0; i < items.length; i++) {
-                items[i].style.left = offset + 'px';
-                if(items[i].offsetLeft > widthContainer) {
-                    items[i].style.left = '0px';
-                }
-            }
-        }, 3000);
-    };
+    
+    // Next/previous controls
+    plusSlides(n) {
+      this.showSlides(this.slideIndex += n);
+    }
+    
+    // Thumbnail image controls
+    currentSlide(n) {
+      this.showSlides(this.slideIndex = n);
+    }
+    
+    showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {this.slideIndex = 1}
+      if (n < 1) {this.slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[this.slideIndex-1].style.display = "block";
+      dots[this.slideIndex-1].className += " active";
+    }
 
 }
