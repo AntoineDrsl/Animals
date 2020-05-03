@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\ShoppingCart;
 use App\Entity\User;
 use App\Model\ProductModel;
+use App\Model\ShoppingCartModel;
 use App\Model\UserModel;
 use Core\Model\DbInterface;
 use Core\Controller\Controller;
@@ -21,6 +23,7 @@ class UserController extends Controller
         $this->model = new UserModel();
         $this->user = new User();
         $this->ProductModel = new ProductModel();
+        $this->ShoppingCartModel = new ShoppingCartModel();
     }
 
     /**
@@ -144,18 +147,49 @@ class UserController extends Controller
             return $this->redirectToRoute('login');
         } else {
 
+            $totalAmount = 0;
             $productInCart = [];
-            foreach($_SESSION['cart'] as $value){
+
+            foreach($_SESSION['cart'] as $product){
+
+                $quantity = $product['quantity'];
+                $product = $this->ProductModel->find($product['id']);
                 
-                $product = $this->ProductModel->find($value);
-                
-                array_push($productInCart, $product);
-                
+                $productInCart[] = ['product' => $product, 'quantity' => $quantity];
+
+                $totalAmount += $product->getPrice() * $quantity;
+            }
+
+            if(isset($_POST['submit'])) {
+                $date = new \Datetime;
+
+                $shoppingCart = [
+                    'user_id' => $_SESSION['id'],
+                    'total_amount' => $totalAmount,
+                    'datetime' => $date->format('Y-m-d H:i:s'),
+                    'state' => 2
+                ];
+                $this->interface->save($shoppingCart, 'shoppingcart');
+
+                $createdShoppingCart = $this->ShoppingCartModel->findLast(1);
+                foreach($productInCart as $product) {
+                    $shoppingCartLine = [
+                        'shoppingcart_id' => $createdShoppingCart[0]->getId(),
+                        'product_id' => $product['product']->getId(),
+                        'quantity' => $product['quantity'],
+                        'amount' => $product['quantity'] * $product['product']->getPrice()
+                    ];
+                    $this->interface->save($shoppingCartLine, 'shoppingcart_line');
+                }
+
+                $_SESSION['cart'] = [];
+                return $this->redirectToRoute('cart');
             }
 
             return $this->render('user/cart', [
                 'onPage' => "cart",
                 'productInCart' => $productInCart,
+                'totalAmount' => $totalAmount
             ]);
 
         }

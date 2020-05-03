@@ -15,8 +15,13 @@
                     <?php if($this->isAdmin()) { ?>
                         <a href="<?= $this->goto('editProduct', $product->getId()); ?>"><button class="btn btn-warning mx-3">Modifier</button></a>
                         <a href="<?= $this->goto('deleteProduct', $product->getId()); ?>"><button class="btn btn-danger mx-3">Supprimer</button></a>
-                    <?php } elseif($this->isConnected()) { ?> 
-                        <a href="<?= $this->goto('addToCart', $_GET['id']) ?>"><button class="btn btn-success">Ajouter au panier</button></a><br>
+                    <?php } elseif($this->isConnected()) { ?>
+                        <?= $errorMessage ?>
+                        <form action="<?= $this->goto('singleProduct', $_GET['id']) ?>" method="post">
+                            <label for="quantity">Quantité</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" value="1">
+                            <input type="submit" class="btn btn-primary">
+                        </form>
                     <?php } else { ?>
                         <div class="alert alert-primary" role="alert">
                             <h4 class="alert-heading">Connectez-vous pour ajouter au panier !</h4>

@@ -36,6 +36,22 @@ class ProductController extends Controller{
     public function singleProduct(){
         
         if(!empty($_GET['id'])){
+
+            $errorMessage = '';
+            
+            if($this->isConnected()) {
+                if(!empty($_POST)) {
+                    if(!empty($_POST['quantity'])) {
+
+                        $_SESSION['cart'][] = ['id' => $_GET['id'], 'quantity' => $_POST['quantity']];
+                        return $this->redirectToRoute('products');
+
+                    } else {
+                        $errorMessage = "Veuillez entrer une quantité";
+                    }
+                }
+            }
+
             $product = $this->ProductModel->find($_GET['id']);
 
             if(!$product){
@@ -44,8 +60,10 @@ class ProductController extends Controller{
 
             return $this->render('products/singleProduct', [
                 'onPage' => 'products',
-                'product' => $product
+                'product' => $product,
+                'errorMessage' => $errorMessage
             ]);
+
         }
 
         $this->redirectToRoute('products');
@@ -135,17 +153,6 @@ class ProductController extends Controller{
 
             return $this->redirectToRoute('singleProducts', $_GET['id']);
         }
-    }
-
-
-    public function addToCart(){
-        if(!empty($_GET['id'])){
-            array_push($_SESSION['cart'], $_GET['id']);
-            return $this->redirectToRoute('products');
-        }
-
-        return $this->redirectToRoute('home');
-
     }
 
 }

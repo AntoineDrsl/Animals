@@ -28,7 +28,7 @@ class Query extends Model
      * 
      * @return object|null
      */
-    public function findLast($limit, $order = ['id' => 'ASC'])
+    public function findLast($limit, $order = ['id' => 'DESC'])
     {
         return $this->db->query("SELECT * FROM " . $this->model . $this->createOrder($order) . $this->createLimit($limit),
                                 'App\Entity\\' . ucfirst($this->model),

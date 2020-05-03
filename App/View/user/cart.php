@@ -11,22 +11,27 @@
                     <tr>
                     <th scope="col">Image du produit</th>
                     <th scope="col">A utiliser sur</th>
-                    <th scope="col">Stock</th>
+                    <th scope="col">Quantité</th>
                     <th scope="col">Prix</th>
+                    <th scope="col">Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($productInCart as $key => $value){?>
+                    <?php foreach($productInCart as $product){?>
                         <tr>
-                            <td><img src="<?= $this->asset('upload/imgProduct/' . $value->getImage()) ?>" alt="<?= $value->getName() ?>" width="10%"></td>
-                            <td><?= $value->getTypeAnimal()?></td>
-                            <td><?= $value->getStock() ?></td>
-                            <td><?= $value->getPrice() ?></td>
+                            <td><img src="<?= $this->asset('upload/imgProduct/' . $product['product']->getImage()) ?>" alt="<?= $product['product']->getName() ?>" width="10%"></td>
+                            <td><?= $product['product']->getTypeAnimal()?></td>
+                            <td><?= $product['quantity'] ?></td>
+                            <td><?= $product['product']->getPrice() ?> €</td>
+                            <td><?= $product['product']->getPrice() * $product['quantity'] ?> €</td>
                         </tr>
                     <?php }?>
                 </tbody>
             </table>
-            <a href="<?= $this->goto('paiement') ?>"><button class="btn btn-success">Passer la commande</button></a><br>
+            <div class="h4 bold">Total: <?= $totalAmount ?></div>
+            <form method="POST" action="<?=$this->goto('cart') ?>">
+                <input type="submit" class="btn btn-success" value="Passer la commande" name="submit">
+            </form>
         <?php } else{?>
 
             <h1 class="text-center">Rien dans votre panier</h1>
