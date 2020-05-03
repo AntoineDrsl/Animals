@@ -52,7 +52,7 @@ class Routing extends Router
             $this->animalController->newAnimal();
         }
 
-        else if($this->onPage('removeAnimal')){
+        else if($this->onPage('deleteAnimal')){
             $this->animalController->deleteAnimal();
         }
 

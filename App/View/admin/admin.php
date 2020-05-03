@@ -137,7 +137,7 @@
                                     <form action="<?= $this->goto('changeState', $command['command']->getId()) ?>" method="POST">
                                         <select name="state" id="state">
                                             <option value="1" <?php if($command['command']->getState() == 1) { ?> selected <?php } ?>>Erreur de paiement</option>
-                                            <option value="2"  <?php if($command['command']->getState() == 2) { ?> selected <?php } ?>>En attente de livraison</option>
+                                            <option value="2"  <?php if($command['command']->getState() == 2) { ?> selected <?php } ?>>En attente de validation</option>
                                             <option value="3" <?php if($command['command']->getState() == 3) { ?> selected <?php } ?>>En cours de livraison</option>
                                             <option value="4" <?php if($command['command']->getState() == 4) { ?> selected <?php } ?>>Livré</option>
                                         </select>

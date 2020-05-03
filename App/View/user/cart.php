@@ -33,7 +33,7 @@
                     <?php }?>
                 </tbody>
             </table>
-            <div class="h4 bold">Total: <?= $totalAmount ?></div>
+            <div class="h4 bold">Total: <?= $totalAmount ?> €</div>
             <form method="POST" action="<?=$this->goto('cart') ?>">
                 <input type="submit" class="btn btn-success" value="Passer la commande" name="submit">
             </form>
